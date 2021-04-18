@@ -1,16 +1,13 @@
-import firebase from "firebase/app";
+import { LoginPage } from "./component/LoginPage";
+import { Header } from "./component/Header";
+import { Footer } from "./component/Footer";
 
 function App() {
-  const firebaseApp = firebase.apps[0];
-
   return (
-    <div className="App">
-
-      <h1>React & Firebase</h1>
-      <code>
-        <pre>{JSON.stringify(firebaseApp.options, null, 2)}</pre>
-      </code>
-
+    <div className="container">
+      <header><Header /></header>
+      <LoginPage />
+      <footer><Footer /></footer>
     </div>
   );
 }
