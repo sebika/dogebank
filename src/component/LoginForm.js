@@ -1,31 +1,44 @@
-import { RiLockPasswordLine } from "react-icons/ri"
-import { AiOutlineMail } from "react-icons/ai"
+import { RiLockPasswordLine } from 'react-icons/ri'
+import { AiOutlineMail } from 'react-icons/ai'
 
 export function LoginForm() {
 
   return (
-    <div className="border rounded bg-light">
-      <form action="" className="mx-3 my-3">
-        <div className="form-group">
-          <div className="input-group">
-            <div className="input-group-addon mt-2 mr-1">
-              <AiOutlineMail/>
-            </div>
-            <input type="email" placeholder="Email" className="form-control" />
+    <form>
+      <h3>Sign In</h3>
+      <br></br>
+
+      <div className='form-group'>
+        <label className='ml-3'>Email</label>
+        <div className='input-group'>
+          <div className='input-group-addon mt-2 mr-1'>
+            <AiOutlineMail />
           </div>
+          <input type='email' className='form-control' placeholder='Enter email' />
         </div>
-        <div className="form-group">
-          <div className="input-group">
-            <div className="input-group-addon mt-2 mr-1">
-              <RiLockPasswordLine />
-            </div>
-            <input type="password" placeholder="Password" className="form-control" />
+      </div>
+
+      <div className='form-group'>
+        <label className='ml-3'>Password</label>
+        <div className='input-group'>
+          <div className='input-group-addon mt-2 mr-1'>
+            <RiLockPasswordLine />
           </div>
+          <input type='password' className='form-control' placeholder='Enter password' />
         </div>
-        <div className="text-right">
-          <button type="submit" className="btn btn-primary">Log in</button>
-        </div>
-      </form>
-    </div>
+      </div>
+
+      <div className='form-group'>
+          <div className='custom-control custom-checkbox'>
+              <input type='checkbox' className='custom-control-input' id='customCheck1' />
+              <label className='custom-control-label' htmlFor='customCheck1'>Remember me</label>
+          </div>
+      </div>
+
+      <button type='submit' className='btn btn-primary btn-block'>Submit</button>
+      <p className='forgot-password text-right'>
+          Forgot <a href='#'>password?</a>
+      </p>
+  </form>
   );
 }
