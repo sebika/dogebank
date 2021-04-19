@@ -1,13 +1,13 @@
-import { LoginForm } from "./LoginForm";
+import { LoginForm } from './LoginForm';
 
 export function LoginPage() {
   return (
-    <div className="row mt-5">
-      <div class="col"></div>
-      <div class="col-6">
-          <LoginForm />
-      </div>
-      <div class="col"></div>
+    <div className='row mt-5'>
+      <div className='col'></div>
+        <div className='col-3'>
+            <LoginForm />
+        </div>
+      <div className='col'></div>
     </div>
   );
 }
