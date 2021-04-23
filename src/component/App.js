@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
-import { Login } from './Login';
-import { Footer } from './Footer';
-import { Home } from './Home';
-import { Header } from './Header';
-import { Register } from './Register';
-import { Dashboard } from './Dashboard';
-import { ForgotPassword } from './ForgotPassword';
-import { UpdateProfile } from './UpdateProfile';
-import { PrivateRoute } from './PrivateRoute';
-import { AuthProvider } from '../contexts/AuthContext';
+import { Login } from './Login'
+import { Footer } from './Footer'
+import { Home } from './Home'
+import { Header } from './Header'
+import { Register } from './Register'
+import { Dashboard } from './Dashboard'
+import { ForgotPassword } from './ForgotPassword'
+import { UpdateProfile } from './UpdateProfile'
+import { PrivateRoute } from './PrivateRoute'
+import { AuthProvider } from '../contexts/AuthContext'
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
 
       <Footer />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import Client from '../models/Client'
 import { auth } from '../firebase'
 
 const AuthContext = React.createContext()
@@ -11,8 +12,17 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  function register(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
+  function register(data) {
+    return auth.createUserWithEmailAndPassword(data.email, data.password).then(_ => {
+      Client.create({
+        nume: data.lastName,
+        prenume: data.firstName,
+        CNP: data.cnp,
+        nume_utilizator: data.username,
+        mail: data.email,
+        adresa: data.address
+      })
+    })
   }
 
   function login(email, password) {

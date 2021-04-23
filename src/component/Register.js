@@ -8,6 +8,11 @@ import { useAuth } from '../contexts/AuthContext'
 
 export function Register() {
   const emailRef = useRef()
+  const firstNameRef = useRef()
+  const lastNameRef = useRef()
+  const cnpRef = useRef()
+  const usernameRef = useRef()
+  const addressRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const { register } = useAuth()
@@ -25,11 +30,22 @@ export function Register() {
     try {
       setError('')
       setLoading(true)
-      await register(emailRef.current.value, passwordRef.current.value)
+
+      const data = {
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
+        cnp: cnpRef.current.value,
+        address: addressRef.current.value,
+        username: usernameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value
+      }
+
+      await register(data)
       history.push('/')
     }
-    catch {
-      setError('Failed to create an account')
+    catch (err){
+      setError(`Failed to create an account ${err}`)
     }
 
     setLoading(false)
@@ -44,6 +60,36 @@ export function Register() {
           {error && <Alert variant='danger'>{error}</Alert>}
 
           <Form onSubmit={handleSubmit}>
+            <Form.Group id='firstName'>
+              <Form.Label><AiOutlineMail /> First Name </Form.Label>
+              <Form.Control type='text' ref={firstNameRef} required />
+
+            </Form.Group>
+
+            <Form.Group id='lastName'>
+              <Form.Label><AiOutlineMail /> Last Name </Form.Label>
+              <Form.Control type='text' ref={lastNameRef} required />
+
+            </Form.Group>
+
+            <Form.Group id='cnp'>
+              <Form.Label><AiOutlineMail /> CNP </Form.Label>
+              <Form.Control type='text' ref={cnpRef} required />
+
+            </Form.Group>
+
+            <Form.Group id='address'>
+              <Form.Label><AiOutlineMail /> Address </Form.Label>
+              <Form.Control type='text' ref={addressRef} required />
+
+            </Form.Group>
+
+            <Form.Group id='username'>
+              <Form.Label><AiOutlineMail /> Username </Form.Label>
+              <Form.Control type='text' ref={usernameRef} required />
+
+            </Form.Group>
+
             <Form.Group id='email'>
               <Form.Label><AiOutlineMail /> Email </Form.Label>
               <Form.Control type='email' ref={emailRef} required />
