@@ -15,11 +15,11 @@ import { AuthProvider } from '../contexts/AuthContext';
 function App() {
   return (
     <>
-      <Header />
-
       <Router>
         <Switch>
           <AuthProvider>
+            <Header />
+
             <Route exact path='/' component={Home} />
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '50px'}}>
