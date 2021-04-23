@@ -8,6 +8,7 @@ import { Header } from './Header';
 import { Register } from './Register';
 import { Dashboard } from './Dashboard';
 import { ForgotPassword } from './ForgotPassword';
+import { UpdateProfile } from './UpdateProfile';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthProvider } from '../contexts/AuthContext';
 
@@ -23,10 +24,11 @@ function App() {
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '50px'}}>
               <div className='w-100' style={{ maxWidth: '500px'}}>
-                <Route exact path='/register' component={Register} />
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/forgot-password' component={ForgotPassword} />
-                <PrivateRoute exact path='/dashboard' component={Dashboard} />
+                <Route path='/register' component={Register} />
+                <Route path='/login' component={Login} />
+                <Route path='/forgot-password' component={ForgotPassword} />
+                <PrivateRoute path='/dashboard' component={Dashboard} />
+                <PrivateRoute path='/update-profile' component={UpdateProfile} />
               </div>
             </Container>
 
