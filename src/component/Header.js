@@ -20,7 +20,7 @@ export function Header() {
       </Nav>
       <Nav>
         <Nav.Link href='/login'>
-          <Button variant='info' size='lg'>Login</Button>
+          <Button variant='info' size='lg'>Log in</Button>
         </Nav.Link>
 
         <Nav.Link href='/register'>
