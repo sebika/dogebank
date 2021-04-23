@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { AiOutlineMail } from 'react-icons/ai'
+import { AiOutlineMail, AiOutlineUser, AiOutlineNumber } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
+import { FaAddressBook } from 'react-icons/fa'
 import { Link, useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
@@ -61,31 +62,31 @@ export function Register() {
 
           <Form onSubmit={handleSubmit}>
             <Form.Group id='firstName'>
-              <Form.Label><AiOutlineMail /> First Name </Form.Label>
+              <Form.Label> First Name </Form.Label>
               <Form.Control type='text' ref={firstNameRef} required />
 
             </Form.Group>
 
             <Form.Group id='lastName'>
-              <Form.Label><AiOutlineMail /> Last Name </Form.Label>
+              <Form.Label> Last Name </Form.Label>
               <Form.Control type='text' ref={lastNameRef} required />
 
             </Form.Group>
 
             <Form.Group id='cnp'>
-              <Form.Label><AiOutlineMail /> CNP </Form.Label>
+              <Form.Label><AiOutlineNumber /> CNP </Form.Label>
               <Form.Control type='text' ref={cnpRef} required />
 
             </Form.Group>
 
             <Form.Group id='address'>
-              <Form.Label><AiOutlineMail /> Address </Form.Label>
+              <Form.Label><FaAddressBook /> Address </Form.Label>
               <Form.Control type='text' ref={addressRef} required />
 
             </Form.Group>
 
             <Form.Group id='username'>
-              <Form.Label><AiOutlineMail /> Username </Form.Label>
+              <Form.Label><AiOutlineUser /> Username </Form.Label>
               <Form.Control type='text' ref={usernameRef} required />
 
             </Form.Group>
