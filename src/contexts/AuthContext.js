@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  function register(data) {
+  async function register(data) {
     return auth.createUserWithEmailAndPassword(data.email, data.password).then(async (_) => {
       await Client.create({
         nume: data.lastName,
@@ -25,6 +25,9 @@ export function AuthProvider({ children }) {
       })
 
       const currentUser = (await Client.all().where('mail', '==', data.email).get()).docs[0]
+      if (currentUser.size !== 1)
+        throw new Error('Found too many entries for the same email')
+
       ClientAccountCreation.create({
         client: {
           collection: Client.collection,
