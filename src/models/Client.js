@@ -1,12 +1,5 @@
-import { db } from '../firebase'
-
-class Field {
-  static String() {
-    return val => {
-      return typeof val === "string"
-    }
-  }
-}
+import Field from './Field'
+import Model from './Model'
 
 export default class Client {
   static _fields = {
@@ -18,28 +11,13 @@ export default class Client {
     adresa:             Field.String()
   }
 
+  static _collection = 'Client'
+
   static all() {
-    return db.collection('Client')
+    return Model.all(Client._collection)
   }
 
   static create(data) {
-    // eslint-disable-next-line
-    if (data == undefined)
-      return
-
-    const toSaveData = {}
-
-    for (let property of Object.getOwnPropertyNames(Client._fields)) {
-      // eslint-disable-next-line
-      if (data[property] == undefined)
-        throw new Error(`Property ${property} is not present on the object`)
-
-      if (Client._fields[property](data[property]) === false)
-        throw new Error(`Property ${property} is not of the correct type`)
-
-      toSaveData[property] = data[property]
-    }
-
-    db.collection('Client').doc().set(data)
+    return Model.create(Client._collection, Client._fields, data)
   }
 }

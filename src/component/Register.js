@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { AiOutlineMail, AiOutlineUser, AiOutlineNumber } from 'react-icons/ai'
+import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { FaAddressBook } from 'react-icons/fa'
 import { Link, useHistory } from 'react-router-dom'
@@ -62,19 +62,19 @@ export function Register() {
 
           <Form onSubmit={handleSubmit}>
             <Form.Group id='firstName'>
-              <Form.Label> First Name </Form.Label>
+              <Form.Label>First Name</Form.Label>
               <Form.Control type='text' ref={firstNameRef} required />
 
             </Form.Group>
 
             <Form.Group id='lastName'>
-              <Form.Label> Last Name </Form.Label>
+              <Form.Label>Last Name</Form.Label>
               <Form.Control type='text' ref={lastNameRef} required />
 
             </Form.Group>
 
             <Form.Group id='cnp'>
-              <Form.Label><AiOutlineNumber /> CNP </Form.Label>
+              <Form.Label>CNP</Form.Label>
               <Form.Control type='text' ref={cnpRef} required />
 
             </Form.Group>
@@ -103,7 +103,7 @@ export function Register() {
             </Form.Group>
 
             <Form.Group id='password-confirm'>
-              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Label><RiLockPasswordLine /> Password Confirmation</Form.Label>
               <Form.Control type='password' ref={passwordConfirmRef} required />
             </Form.Group>
 

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import Client from '../models/Client'
+import ClientAccountCreation from '../models/ClientAccountCreation'
 import { auth } from '../firebase'
 
 const AuthContext = React.createContext()
@@ -13,14 +14,22 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   function register(data) {
-    return auth.createUserWithEmailAndPassword(data.email, data.password).then(_ => {
-      Client.create({
+    return auth.createUserWithEmailAndPassword(data.email, data.password).then(async (_) => {
+      await Client.create({
         nume: data.lastName,
         prenume: data.firstName,
         CNP: data.cnp,
         nume_utilizator: data.username,
         mail: data.email,
         adresa: data.address
+      })
+
+      const currentUser = (await Client.all().where('mail', '==', data.email).get()).docs[0]
+      ClientAccountCreation.create({
+        client: {
+          collection: 'Client',
+          id: currentUser.id
+        }
       })
     })
   }
