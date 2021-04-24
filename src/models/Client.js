@@ -11,13 +11,13 @@ export default class Client {
     adresa:             Field.String()
   }
 
-  static _collection = 'Client'
+  static collection = 'Client'
 
   static all() {
-    return Model.all(Client._collection)
+    return Model.all(Client.collection)
   }
 
   static create(data) {
-    return Model.create(Client._collection, Client._fields, data)
+    return Model.create(Client.collection, Client._fields, data)
   }
 }

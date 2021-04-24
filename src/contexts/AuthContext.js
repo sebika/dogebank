@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
       const currentUser = (await Client.all().where('mail', '==', data.email).get()).docs[0]
       ClientAccountCreation.create({
         client: {
-          collection: 'Client',
+          collection: Client.collection,
           id: currentUser.id
         }
       })
