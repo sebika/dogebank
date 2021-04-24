@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
@@ -63,5 +63,5 @@ export function Header() {
       </Navbar.Collapse>
       </Navbar>
     </>
-  );
+  )
 }

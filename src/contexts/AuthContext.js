@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
+import Client from '../models/Client'
+import ClientAccountCreation from '../models/ClientAccountCreation'
 import { auth } from '../firebase'
 
 const AuthContext = React.createContext()
@@ -11,8 +13,28 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  function register(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
+  async function register(data) {
+    return auth.createUserWithEmailAndPassword(data.email, data.password).then(async (_) => {
+      await Client.create({
+        nume: data.lastName,
+        prenume: data.firstName,
+        CNP: data.cnp,
+        nume_utilizator: data.username,
+        mail: data.email,
+        adresa: data.address
+      })
+
+      const currentUser = (await Client.all().where('mail', '==', data.email).get()).docs[0]
+      if (currentUser.size !== 1)
+        throw new Error('Found too many entries for the same email')
+
+      ClientAccountCreation.create({
+        client: {
+          collection: Client.collection,
+          id: currentUser.id
+        }
+      })
+    })
   }
 
   function login(email, password) {
