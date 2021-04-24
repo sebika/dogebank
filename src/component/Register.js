@@ -46,7 +46,7 @@ export function Register() {
       history.push('/')
     }
     catch (err){
-      setError(`Failed to create an account ${err}`)
+      setError(`Failed to create an account. Error: ${err}`)
     }
 
     setLoading(false)
