@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
     const accountRequest = (await ClientAccountCreation.all().where('client.id', '==', currentUser.id).get())
 
     if (accountRequest.size !== 0)
-      throw new Error('The account creation request has not been accepted yet! !')
+      throw new Error('The account creation request has not been accepted yet!')
 
     return auth.signInWithEmailAndPassword(email, password)
   }
