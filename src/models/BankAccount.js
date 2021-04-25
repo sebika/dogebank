@@ -17,5 +17,4 @@ export default class BankAccount {
   static create(data) {
     return Model.create(Client.collection, Client._fields, data)
   }
-  
 }

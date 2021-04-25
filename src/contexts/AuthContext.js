@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
   async function register(data) {
     return auth.createUserWithEmailAndPassword(data.email, data.password).then(async (_) => {
       await auth.signOut()
+
       await Client.create({
         nume: data.lastName,
         prenume: data.firstName,
@@ -39,13 +40,11 @@ export function AuthProvider({ children }) {
   }
 
   async function login(email, password) {
-
     const currentUser = (await Client.all().where('mail', '==', email).get()).docs[0]
-
     const accountRequest = (await ClientAccountCreation.all().where('client.id', '==', currentUser.id).get())
 
     if (accountRequest.size !== 0)
-      throw new Error('Request not accepted!')
+      throw new Error('The account creation request has not been accepted yet! !')
 
     return auth.signInWithEmailAndPassword(email, password)
   }
