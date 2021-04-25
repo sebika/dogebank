@@ -23,8 +23,8 @@ export function Login() {
       await login(emailRef.current.value, passwordRef.current.value)
       history.push('/dashboard')
     }
-    catch {
-      setError('Failed to Sign In')
+    catch (err) {
+      setError(`Failed to Sign In. ${err}`)
     }
 
     setLoading(false)

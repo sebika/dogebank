@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
 
   async function register(data) {
     return auth.createUserWithEmailAndPassword(data.email, data.password).then(async (_) => {
+      await auth.signOut()
       await Client.create({
         nume: data.lastName,
         prenume: data.firstName,
@@ -24,20 +25,28 @@ export function AuthProvider({ children }) {
         adresa: data.address
       })
 
-      const currentUser = (await Client.all().where('mail', '==', data.email).get()).docs[0]
-      if (currentUser.size !== 1)
+      const userQuery = (await Client.all().where('mail', '==', data.email).get())
+      if (userQuery.size !== 1)
         throw new Error('Found too many entries for the same email')
 
       ClientAccountCreation.create({
         client: {
           collection: Client.collection,
-          id: currentUser.id
+          id: userQuery.docs[0].id
         }
       })
     })
   }
 
-  function login(email, password) {
+  async function login(email, password) {
+
+    const currentUser = (await Client.all().where('mail', '==', email).get()).docs[0]
+
+    const accountRequest = (await ClientAccountCreation.all().where('client.id', '==', currentUser.id).get())
+
+    if (accountRequest.size !== 0)
+      throw new Error('Request not accepted!')
+
     return auth.signInWithEmailAndPassword(email, password)
   }
 
