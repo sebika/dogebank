@@ -34,7 +34,7 @@ export function Login() {
     <>
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'>Sign Up</h2>
+          <h2 className='text-center mb-4'>Log In</h2>
 
           {error && <Alert variant='danger'>{error}</Alert>}
 
