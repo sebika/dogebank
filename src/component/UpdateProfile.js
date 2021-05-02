@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
+import Client from '../models/Client'
 
 export function UpdateProfile() {
   const emailRef = useRef()
@@ -13,11 +14,15 @@ export function UpdateProfile() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords do not match')
+      return setError('Error: Passwords do not match')
     }
+
+    let sameEmailQuery = (await Client.all().where('mail', '==', emailRef.current.value).get())
+    if (sameEmailQuery.size !== 0 && emailRef.current.value !== currentUser.email)
+      return setError('Error: This email is already used with another account')
 
     const promises = []
     setLoading(true)
@@ -29,12 +34,17 @@ export function UpdateProfile() {
     if (passwordRef.current.value)
       promises.push(updatePassword(passwordRef.current.value))
 
+    if (emailRef.current.value) {
+      let userQuery = (await Client.all().where('mail', '==', currentUser.email).get())
+      promises.push(Client.all().doc(userQuery.docs[0].id).update({mail: emailRef.current.value}))
+    }
+
     Promise.all(promises)
       .then(() => {
         history.push('/dashboard')
       })
-      .catch(() => {
-        setError('Failed to update account')
+      .catch((err) => {
+        setError(`${err}`)
       })
       .finally(() => {
         setLoading(false)
