@@ -12,4 +12,10 @@ export default class Field {
         && val.hasOwnProperty('id') && typeof val['id'] === 'string'
     }
   }
+
+  static Boolean() {
+    return val => {
+      return typeof val === 'boolean'
+    }
+  }
 }

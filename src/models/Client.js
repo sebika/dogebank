@@ -8,7 +8,8 @@ export default class Client {
     CNP:                Field.String(),
     nume_utilizator:    Field.String(),
     mail:               Field.String(),
-    adresa:             Field.String()
+    adresa:             Field.String(),
+    is_helpdesk:        Field.Boolean()
   }
 
   static collection = 'Client'

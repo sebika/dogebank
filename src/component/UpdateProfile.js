@@ -35,8 +35,7 @@ export function UpdateProfile() {
       promises.push(updatePassword(passwordRef.current.value))
 
     if (emailRef.current.value) {
-      let userQuery = (await Client.all().where('mail', '==', currentUser.email).get())
-      promises.push(Client.all().doc(userQuery.docs[0].id).update({mail: emailRef.current.value}))
+      promises.push(Client.all().doc(currentUser.db.id).update({mail: emailRef.current.value}))
     }
 
     Promise.all(promises)

@@ -23,7 +23,8 @@ export function AuthProvider({ children }) {
         CNP: data.cnp,
         nume_utilizator: data.username,
         mail: data.email,
-        adresa: data.address
+        adresa: data.address,
+        is_helpdesk: false
       })
 
       const userQuery = (await Client.all().where('mail', '==', data.email).get())
@@ -67,6 +68,12 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        Client.all().where('mail', '==', user.email).get().then(
+          snapshot => user.db = snapshot.docs[0]
+        )
+      }
+
       setCurrentUser(user)
       setLoading(false)
     })
