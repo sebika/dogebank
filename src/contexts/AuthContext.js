@@ -23,7 +23,8 @@ export function AuthProvider({ children }) {
         CNP: data.cnp,
         nume_utilizator: data.username,
         mail: data.email,
-        adresa: data.address
+        adresa: data.address,
+        is_helpdesk: false
       })
 
       const userQuery = (await Client.all().where('mail', '==', data.email).get())
@@ -66,7 +67,11 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(async user => {
+      if (user) {
+        user.db = (await Client.all().where('mail', '==', user.email).get()).docs[0]
+      }
+
       setCurrentUser(user)
       setLoading(false)
     })

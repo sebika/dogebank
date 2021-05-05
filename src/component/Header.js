@@ -17,6 +17,9 @@ export function Header() {
     if (currentUser) {
       return (
         <>
+          <Nav.Link href='/dashboard'>
+              <Button variant='secondary' size='lg'>{currentUser.email}</Button>
+          </Nav.Link>
           <Nav.Link onClick={handleLogout}>
             <Button variant='danger' size='lg'>Logout</Button>
           </Nav.Link>
