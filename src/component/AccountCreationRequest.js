@@ -20,7 +20,6 @@ export function AccountCreationRequest() {
         setIsLoading(false)
       })
     })
-
   }, [])
 
   function Requests() {
@@ -36,13 +35,13 @@ export function AccountCreationRequest() {
           <Card.Header>Request {props.id}</Card.Header>
           <Card.Body>
             <Card.Title>{props.doc.get('nume_utilizator')}'s Info</Card.Title>
+
             <ListGroup className='list-group-flush'>
               <ListGroupItem><strong>nume: </strong> {props.doc.get('nume')}</ListGroupItem>
               <ListGroupItem><strong>prenume: </strong> {props.doc.get('prenume')}</ListGroupItem>
               <ListGroupItem><strong>email: </strong> {props.doc.get('mail')}</ListGroupItem>
               <ListGroupItem><strong>CNP: </strong> {props.doc.get('CNP')}</ListGroupItem>
               <ListGroupItem><strong>adresa: </strong> {props.doc.get('adresa')}</ListGroupItem>
-
             </ListGroup>
 
             <Button variant='btn btn-danger ml-3 float-right'>Deny</Button>
