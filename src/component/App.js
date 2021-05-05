@@ -10,6 +10,7 @@ import { Dashboard } from './Dashboard'
 import { ForgotPassword } from './ForgotPassword'
 import { UpdateProfile } from './UpdateProfile'
 import { PrivateRoute } from './PrivateRoute'
+import { AccountCreationRequest } from './AccountCreationRequest'
 import { AuthProvider } from '../contexts/AuthContext'
 
 function App() {
@@ -22,6 +23,12 @@ function App() {
 
             <Route exact path='/' component={Home} />
 
+            <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
+              <div className='w-100' style={{ maxWidth: '800px'}}>
+                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest} />
+              </div>
+            </Container>
+
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '50px'}}>
               <div className='w-100' style={{ maxWidth: '500px'}}>
                 <Route path='/register' component={Register} />
@@ -30,6 +37,7 @@ function App() {
                 <PrivateRoute path='/dashboard' component={Dashboard} />
                 <PrivateRoute path='/update-profile' component={UpdateProfile} />
               </div>
+
             </Container>
 
           </AuthProvider>

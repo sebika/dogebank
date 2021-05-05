@@ -27,7 +27,7 @@ export function Dashboard() {
           <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
             Update Profile
           </Link>
-          <Link to='#' className='btn btn-primary w-100 mt-3'>
+          <Link to='/account-creation-requests' className='btn btn-primary w-100 mt-3'>
             Account creation requests
           </Link>
         </>
