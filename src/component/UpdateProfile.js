@@ -34,12 +34,11 @@ export function UpdateProfile() {
     if (passwordRef.current.value)
       promises.push(updatePassword(passwordRef.current.value))
 
-    if (emailRef.current.value) {
-      promises.push(Client.all().doc(currentUser.db.id).update({mail: emailRef.current.value}))
-    }
-
     Promise.all(promises)
-      .then(() => {
+      .then(async () => {
+        if (emailRef.current.value) {
+          await Client.all().doc(currentUser.db.id).update({mail: emailRef.current.value})
+        }
         history.push('/dashboard')
       })
       .catch((err) => {

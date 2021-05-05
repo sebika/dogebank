@@ -3,7 +3,6 @@ import { Card, Button, Alert } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
-import Client from '../models/Client'
 
 export function Dashboard() {
   const [error, setError] = useState('')
@@ -22,11 +21,25 @@ export function Dashboard() {
   }
 
   function DisplayButtons() {
-    return (
-      <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
-        Update Profile
-      </Link>
-    )
+    if (currentUser.db.get('is_helpdesk'))
+      return (
+        <>
+          <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
+            Update Profile
+          </Link>
+          <Link to='#' className='btn btn-primary w-100 mt-3'>
+            Account creation requests
+          </Link>
+        </>
+      )
+    else
+      return (
+        <>
+          <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
+            Update Profile
+          </Link>
+        </>
+      )
   }
 
   return (
@@ -36,7 +49,9 @@ export function Dashboard() {
           <h2 className='text-center mb-4'>Profile</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
+
           <DisplayButtons />
+
         </Card.Body>
       </Card>
 

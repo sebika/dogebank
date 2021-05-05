@@ -67,11 +67,9 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(async user => {
       if (user) {
-        Client.all().where('mail', '==', user.email).get().then(
-          snapshot => user.db = snapshot.docs[0]
-        )
+        user.db = (await Client.all().where('mail', '==', user.email).get()).docs[0]
       }
 
       setCurrentUser(user)
