@@ -27,6 +27,9 @@ export function Dashboard() {
           <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
             Update Profile
           </Link>
+          <Link to='/create-bank-account' className='btn btn-primary w-100 mt-3'>
+            Create New Bank Account
+          </Link>
           <Link to='/account-creation-requests' className='btn btn-primary w-100 mt-3'>
             Account creation requests
           </Link>
@@ -37,6 +40,9 @@ export function Dashboard() {
         <>
           <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
             Update Profile
+          </Link>
+          <Link to='/create-bank-account' className='btn btn-primary w-100 mt-3'>
+            Create New Bank Account
           </Link>
         </>
       )
@@ -54,12 +60,6 @@ export function Dashboard() {
 
         </Card.Body>
       </Card>
-
-      <div className='w-100 text-center mt-2'>
-        <Button variant='link' onClick={handleLogout}>
-          Log Out
-        </Button>
-      </div>
     </>
   )
 }
