@@ -18,10 +18,10 @@ export function CreateBankAccount() {
 
   async function generateIBAN() {
     while (1) {
-      let IBAN = "RO69DOGE"
-      for (let i = 0; i < 16; i++) {
-        IBAN += Math.floor(Math.random() * 10).toString()
-      }
+      let IBAN = 'RO69DOGE'
+
+      IBAN += [...Array(16).keys()].map(() => Math.floor(Math.random() * 10)).join('')
+
       const IBANQuery = (await BankAccount.all().where('IBAN', '==', IBAN).get())
 
       if (IBANQuery.size === 0)
@@ -31,7 +31,7 @@ export function CreateBankAccount() {
 
   async function createAccount(data) {
       await BankAccount.create({
-        client: { collection: "Client", id: currentUser.db.id },
+        client: { collection: 'Client', id: currentUser.db.id },
         IBAN: await generateIBAN(),
         moneda: data.currency,
         nume: data.accountNickname
@@ -62,7 +62,7 @@ export function CreateBankAccount() {
 
   return (
     <>
-      <Card style={{marginTop:-30, marginBottom:70}}>
+      <Card style={{marginTop:-30}}>
         <Card.Body>
           <h2 className='text-center mb-4'>Create New Bank Account</h2>
 
