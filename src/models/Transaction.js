@@ -14,10 +14,10 @@ export default class Transaction {
   static collection = 'Transaction'
 
   static all() {
-    return Model.all(Client.collection)
+    return Model.all(Transaction.collection)
   }
 
   static create(data) {
-    return Model.create(Client.collection, Client._fields, data)
+    return Model.create(Transaction.collection, Transaction._fields, data)
   }
 }
