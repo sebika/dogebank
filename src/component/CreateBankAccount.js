@@ -36,7 +36,7 @@ export function CreateBankAccount() {
         moneda: data.currency,
         nume: data.accountNickname
       })
-  }
+  } 
 
   async function handleSubmit(e) {
     e.preventDefault()
