@@ -117,7 +117,6 @@ export function Register() {
           </Form>
         </Card.Body>
       </Card>
-
     </>
   )
 }
