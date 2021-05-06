@@ -10,6 +10,7 @@ import { Dashboard } from './Dashboard'
 import { ForgotPassword } from './ForgotPassword'
 import { UpdateProfile } from './UpdateProfile'
 import { PrivateRoute } from './PrivateRoute'
+import { AskQuestion } from './AskQuestion'
 import { AccountCreationRequest } from './AccountCreationRequest'
 import { AuthProvider } from '../contexts/AuthContext'
 import { CreateBankAccount } from './CreateBankAccount'
@@ -38,6 +39,7 @@ function App() {
                 <PrivateRoute path='/dashboard' component={Dashboard} />
                 <PrivateRoute path='/update-profile' component={UpdateProfile} />
                 <PrivateRoute path='/create-bank-account' component={CreateBankAccount} />
+                <PrivateRoute path='/support' component={AskQuestion} />
               </div>
 
             </Container>
