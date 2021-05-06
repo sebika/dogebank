@@ -29,16 +29,16 @@ export function AskQuestion() {
     <Card>
       <Card.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId='formBasicEmail'>
             <Form.Label>Your Question</Form.Label>
-            <Form.Control as="textarea" rows={4} ref={textRef} />
-            <Form.Text className="text-muted">
+            <Form.Control as='textarea' rows={4} ref={textRef} />
+            <Form.Text className='text-muted'>
               Tell us what bothers you. We will help you as soon as we can.
               Our answer will be sent to your email.
             </Form.Text>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant='primary' type='submit'>
             Submit
           </Button>
         </Form>
