@@ -54,7 +54,7 @@ export function Register() {
 
   return (
     <>
-      <Card style={{marginTop:-30}}>
+      <Card style={{marginTop:-30, marginBottom:70}}>
         <Card.Body>
           <h2 className='text-center mb-4'>Sign Up</h2>
 
@@ -110,12 +110,13 @@ export function Register() {
             <Button disabled={loading} className='w-100' type='submit'>
               Sign Up
             </Button>
+
+            <div className='w-100 text-center mt-2'>
+              Already have an account? <Link to='/login'>Log In</Link>
+            </div>
           </Form>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'>
-        Already have an account? <Link to='/login'>Log In</Link>
-      </div>
     </>
   )
 }
