@@ -1,10 +1,4 @@
 export default class Field {
-  static String() {
-    return val => {
-      return typeof val === 'string'
-    }
-  }
-
   static ForeignKey() {
     return val => {
       return typeof val === 'object'
@@ -13,9 +7,21 @@ export default class Field {
     }
   }
 
+  static String() {
+    return val => {
+      return typeof val === 'string'
+    }
+  }
+
   static Boolean() {
     return val => {
       return typeof val === 'boolean'
+    }
+  }
+
+  static Number() {
+    return val => {
+      return typeof val === 'number'
     }
   }
 }
