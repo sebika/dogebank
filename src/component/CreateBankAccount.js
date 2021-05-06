@@ -72,12 +72,17 @@ export function CreateBankAccount() {
             <Form.Group id='accountNickname'>
               <Form.Label>Nickname</Form.Label>
               <Form.Control type='text' ref={accountNicknameRef} required />
-
             </Form.Group>
 
             <Form.Group id='currency'>
               <Form.Label>Currency</Form.Label>
-              <Form.Control type='text' ref={currencyRef} required />
+              <Form.Control as='select' ref={currencyRef} required >
+                <option value='DOGE'>DOGE</option>
+                <option value='RON'>RON</option>
+                <option value='EUR'>EUR</option>
+                <option value='USD'>USD</option>
+                <option value='GBP'>GBP</option>
+              </Form.Control>
 
             </Form.Group>
 
