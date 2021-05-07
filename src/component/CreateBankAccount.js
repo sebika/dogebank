@@ -32,7 +32,7 @@ export function CreateBankAccount() {
         IBAN: await generateIBAN(),
         moneda: data.currency,
         nume: data.accountNickname,
-        amount: 0
+        suma: 0
       })
   }
 
