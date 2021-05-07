@@ -8,31 +8,24 @@ export function Dashboard() {
   const { currentUser } = useAuth()
 
   function DisplayButtons() {
-    if (currentUser.db.get('is_helpdesk'))
-      return (
-        <>
-          <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
-            Update Profile
-          </Link>
-          <Link to='/create-bank-account' className='btn btn-primary w-100 mt-3'>
-            Create New Bank Account
-          </Link>
+    return (
+      <>
+        <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
+          Update Profile
+        </Link>
+
+        <Link to='/create-bank-account' className='btn btn-primary w-100 mt-3'>
+          Create New Bank Account
+        </Link>
+
+        {
+          currentUser.db.get('is_helpdesk') &&
           <Link to='/account-creation-requests' className='btn btn-primary w-100 mt-3'>
             Account creation requests
           </Link>
-        </>
-      )
-    else
-      return (
-        <>
-          <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
-            Update Profile
-          </Link>
-          <Link to='/create-bank-account' className='btn btn-primary w-100 mt-3'>
-            Create New Bank Account
-          </Link>
-        </>
-      )
+        }
+      </>
+    )
   }
 
   return (
