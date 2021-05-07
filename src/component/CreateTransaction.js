@@ -4,8 +4,10 @@ import { useHistory, Link } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 import BankAccount from '../models/BankAccount'
+import Transaction from '../models/Transaction'
 
 export function CreateTransaction() {
+  const senderAccountNameRef = useRef()
   const IBANSenderRef = useRef()
   const IBANRecipientRef = useRef()
   const currencyRef = useRef()
@@ -27,27 +29,57 @@ export function CreateTransaction() {
       })
   }, [currentUser.db.id])
 
-  async function createAccount(data) {
-      await BankAccount.create({
+  async function createData() {
+    if (senderAccountNameRef.current.value === 'Choose an account')
+      throw Error('You need to select one of your bank accounts!')
 
-      })
+    if (IBANSenderRef.current.value === IBANRecipientRef.current.value)
+      throw Error('The sender and recipient email are the same!')
+
+    if (isNaN(Number(amountRef.current.value)))
+      throw Error('Please enter a valid amount!')
+
+    if (Number(amountRef.current.value) < 0)
+      throw Error('Please enter a positive amount!')
+
+    const sender = snapshotAccounts.find(
+      account => account.get('nume') === senderAccountNameRef.current.value
+    )
+    if (amountRef.current.value > sender.get('suma'))
+      throw Error('You have insufficient funds!')
+
+    const query = await BankAccount.all().where('IBAN', '==', IBANRecipientRef.current.value).get()
+    if (query.size !== 1)
+      throw Error('There is no bank account with the IBAN you specified')
+
+    const recipient = query.docs[0]
+    BankAccount.all().doc(sender.id).update({
+      suma: sender.get('suma') - Number(amountRef.current.value)
+    })
+    BankAccount.all().doc(recipient.id).update({
+      suma: recipient.get('suma') + Number(amountRef.current.value)
+    })
+
+    return {
+      expeditor: {collection: 'BankAccount', id: sender.id},
+      destinatar: {collection: 'BankAccount', id: recipient.id},
+      suma: Number(amountRef.current.value),
+      moneda: currencyRef.current.value,
+      mesaj: messageRef.current.value
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
 
     try {
-      setError('')
+      const transactionData = await createData()
       setLoading(true)
-
-        const data = {
-
-        }
-
-      await createAccount(data)
+      setError('')
+      await Transaction.create(transactionData)
       history.push('/dashboard')
     }
-    catch (err){
+    catch (err) {
       setError(`Failed to create transaction. ${err}`)
     }
 
@@ -55,26 +87,45 @@ export function CreateTransaction() {
   }
 
   function CreateTransactionPage() {
+    const [senderIBAN, setSenderIBAN] = useState('')
+    const [senderCurrency, setSenderCurrency] = useState('')
+
+    function handleChange() {
+      const currentAccount = snapshotAccounts.find(
+        account => account.get('nume') === senderAccountNameRef.current.value
+      )
+      setSenderIBAN(currentAccount.get('IBAN'))
+      setSenderCurrency(currentAccount.get('moneda'))
+    }
+
     return (
       <>
-        <Card>
+        <Card style={{marginBottom:70}}>
           <Card.Body>
             <h2 className='text-center mb-4'>Create New Transaction</h2>
 
             {error && <Alert variant='danger'>{error}</Alert>}
 
             <Form onSubmit={handleSubmit}>
-              <Form.Group id='sender'>
+              <Form.Group id='senderAccountName'>
                 <Form.Label>Select a bank account</Form.Label>
-                <Form.Control as='select' ref={IBANSenderRef} required>
+                <Form.Control as='select' ref={senderAccountNameRef} onChange={handleChange} required>
+                  <option style={{display: 'none', disabled: 'true', selected: 'true'}}>
+                    Choose an account
+                  </option>
                   {
                     snapshotAccounts.map((account, id) => (
                       <option key={id}>
-                        {account.get('nume')} - {account.get('moneda')}
+                        {account.get('nume')}
                       </option>
                     ))
                   }
                 </Form.Control>
+              </Form.Group>
+
+              <Form.Group id='sender'>
+                <Form.Label>Sender IBAN</Form.Label>
+                <Form.Control type='text' ref={IBANSenderRef} value={senderIBAN} readOnly />
               </Form.Group>
 
               <Form.Group id='recipient'>
@@ -89,7 +140,7 @@ export function CreateTransaction() {
 
               <Form.Group id='currency'>
                 <Form.Label>Currency</Form.Label>
-                <Form.Control type='text' ref={currencyRef} required />
+                <Form.Control type='text' ref={currencyRef} value={senderCurrency} readOnly />
               </Form.Group>
 
               <Form.Group controlId='formBasicEmail'>
@@ -104,14 +155,13 @@ export function CreateTransaction() {
                 Make transaction
               </Button>
             </Form>
+            <div className='w-100 text-center mt-2'>
+              <Link to='/dashboard'>
+                  Go back
+              </Link>
+            </div>
           </Card.Body>
         </Card>
-
-        <div className='w-100 text-center mt-2'>
-          <Link to='/dashboard'>
-              Go back
-          </Link>
-        </div>
       </>
     )
   }

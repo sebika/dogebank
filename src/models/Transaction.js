@@ -3,11 +3,11 @@ import Model from './Model'
 
 export default class Transaction {
   static _fields = {
-    sender:                 Field.ForeignKey(),
-    recipient:              Field.ForeignKey(),
-    amount:                 Field.Number(),
+    expeditor:              Field.ForeignKey(),
+    destinatar:             Field.ForeignKey(),
+    suma:                   Field.Number(),
     moneda:                 Field.String(),
-    message:                Field.String()
+    mesaj:                  Field.String()
   }
 
   static collection = 'Transaction'

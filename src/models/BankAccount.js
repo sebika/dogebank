@@ -7,7 +7,7 @@ export default class BankAccount {
     IBAN:               Field.String(),
     moneda:             Field.String(),
     nume:               Field.String(),
-    amount:             Field.Number()
+    suma:               Field.Number()
   }
 
   static collection = 'BankAccount'
