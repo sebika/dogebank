@@ -1,9 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
-import { RiLockPasswordLine } from 'react-icons/ri'
-import { FaAddressBook } from 'react-icons/fa'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 import BankAccount from '../models/BankAccount'
@@ -36,7 +33,7 @@ export function CreateBankAccount() {
         moneda: data.currency,
         nume: data.accountNickname
       })
-  } 
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()

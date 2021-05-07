@@ -1,24 +1,11 @@
-import React, { useState } from 'react'
-import { Card, Button, Alert } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
+import React from 'react'
+import { Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 
 export function Dashboard() {
-  const [error, setError] = useState('')
-  const { currentUser, logout } = useAuth()
-  const history = useHistory()
-
-  async function handleLogout() {
-    setError('')
-
-    try {
-      await logout()
-      history.push('/')
-    } catch {
-      setError('Failed to log out')
-    }
-  }
+  const { currentUser } = useAuth()
 
   function DisplayButtons() {
     if (currentUser.db.get('is_helpdesk'))
@@ -53,7 +40,6 @@ export function Dashboard() {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Profile</h2>
-          {error && <Alert variant='danger'>{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
 
           <DisplayButtons />
