@@ -10,12 +10,16 @@ export function Dashboard() {
   function DisplayButtons() {
     return (
       <>
-        <Link to='/update-profile' className='btn btn-primary w-100 mt-3'>
-          Update Profile
+        <Link to='/update-profile' className='btn btn-outline-dark w-100 mt-3'>
+          Update profile
         </Link>
 
-        <Link to='/create-bank-account' className='btn btn-primary w-100 mt-3'>
-          Create New Bank Account
+        <Link to='/create-bank-account' className='btn btn-outline-dark w-100 mt-3'>
+          Create new bank account
+        </Link>
+
+        <Link to='/create-transaction' className='btn btn-outline-dark w-100 mt-3'>
+          Create new transaction
         </Link>
 
         {
