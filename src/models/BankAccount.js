@@ -6,7 +6,8 @@ export default class BankAccount {
     client:             Field.ForeignKey(),
     IBAN:               Field.String(),
     moneda:             Field.String(),
-    nume:               Field.String()
+    nume:               Field.String(),
+    amount:             Field.Number()
   }
 
   static collection = 'BankAccount'
