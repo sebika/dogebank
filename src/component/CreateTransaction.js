@@ -108,7 +108,7 @@ export function CreateTransaction() {
 
             <Form onSubmit={handleSubmit}>
               <Form.Group id='senderAccountName'>
-                <Form.Label>Select a bank account</Form.Label>
+                <Form.Label>Select bank account</Form.Label>
                 <Form.Control as='select' ref={senderAccountNameRef} onChange={handleChange} required>
                   <option style={{display: 'none', disabled: 'true', selected: 'true'}}>
                     Choose an account
