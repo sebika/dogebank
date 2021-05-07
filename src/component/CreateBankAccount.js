@@ -31,7 +31,8 @@ export function CreateBankAccount() {
         client: { collection: 'Client', id: currentUser.db.id },
         IBAN: await generateIBAN(),
         moneda: data.currency,
-        nume: data.accountNickname
+        nume: data.accountNickname,
+        amount: 0
       })
   }
 
@@ -73,14 +74,13 @@ export function CreateBankAccount() {
 
             <Form.Group id='currency'>
               <Form.Label>Currency</Form.Label>
-              <Form.Control as='select' ref={currencyRef} required >
-                <option value='DOGE'>DOGE</option>
+              <Form.Control as='select' ref={currencyRef} required>
+                <option value='DOGECOIN'>DOGECOIN</option>
                 <option value='RON'>RON</option>
                 <option value='EUR'>EUR</option>
                 <option value='USD'>USD</option>
                 <option value='GBP'>GBP</option>
               </Form.Control>
-
             </Form.Group>
 
             <Button disabled={loading} className='w-100' type='submit'>

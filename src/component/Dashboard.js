@@ -10,21 +10,21 @@ export function Dashboard() {
   function DisplayButtons() {
     return (
       <>
-        <Link to='/update-profile' className='btn btn-outline-dark w-100 mt-3'>
+        <Link to='/update-profile' className='btn btn-secondary w-100 mt-3'>
           Update profile
         </Link>
 
-        <Link to='/create-bank-account' className='btn btn-outline-dark w-100 mt-3'>
+        <Link to='/create-bank-account' className='btn btn-secondary w-100 mt-3'>
           Create new bank account
         </Link>
 
-        <Link to='/create-transaction' className='btn btn-outline-dark w-100 mt-3'>
+        <Link to='/create-transaction' className='btn btn-secondary w-100 mt-3'>
           Create new transaction
         </Link>
 
         {
           currentUser.db.get('is_helpdesk') &&
-          <Link to='/account-creation-requests' className='btn btn-primary w-100 mt-3'>
+          <Link to='/account-creation-requests' className='btn btn-secondary w-100 mt-3'>
             Account creation requests
           </Link>
         }

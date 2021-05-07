@@ -64,37 +64,31 @@ export function Register() {
             <Form.Group id='firstName'>
               <Form.Label>First Name</Form.Label>
               <Form.Control type='text' ref={firstNameRef} required />
-
             </Form.Group>
 
             <Form.Group id='lastName'>
               <Form.Label>Last Name</Form.Label>
               <Form.Control type='text' ref={lastNameRef} required />
-
             </Form.Group>
 
             <Form.Group id='cnp'>
               <Form.Label>CNP</Form.Label>
               <Form.Control type='text' ref={cnpRef} required />
-
             </Form.Group>
 
             <Form.Group id='address'>
               <Form.Label><FaAddressBook /> Address </Form.Label>
               <Form.Control type='text' ref={addressRef} required />
-
             </Form.Group>
 
             <Form.Group id='username'>
               <Form.Label><AiOutlineUser /> Username </Form.Label>
               <Form.Control type='text' ref={usernameRef} required />
-
             </Form.Group>
 
             <Form.Group id='email'>
               <Form.Label><AiOutlineMail /> Email </Form.Label>
               <Form.Control type='email' ref={emailRef} required />
-
             </Form.Group>
 
             <Form.Group id='password'>

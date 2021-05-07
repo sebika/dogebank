@@ -3,9 +3,8 @@ import Model from './Model'
 
 export default class Transaction {
   static _fields = {
-    bank_account:           Field.ForeignKey(),
-    source:                 Field.ForeignKey(),
-    destination:            Field.ForeignKey(),
+    sender:                 Field.ForeignKey(),
+    recipient:              Field.ForeignKey(),
     amount:                 Field.Number(),
     moneda:                 Field.String(),
     message:                Field.String()
