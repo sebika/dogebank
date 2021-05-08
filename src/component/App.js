@@ -30,7 +30,8 @@ function App() {
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
               <div className='w-100' style={{ maxWidth: '800px'}}>
-                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest} check={(currentUser) =>  currentUser.db.get('is_helpdesk')} />
+                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest}
+                  check={(currentUser) =>  currentUser.db.get('is_helpdesk')} />
               </div>
             </Container>
 
