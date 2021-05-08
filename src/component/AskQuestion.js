@@ -52,6 +52,5 @@ export function AskQuestion() {
         </Button>
       </div>
     </>
-
   )
 }
