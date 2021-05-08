@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Container, ListGroup, CardColumns, CardDeck } from 'react-bootstrap'
+import { Card, Container, ListGroup, CardColumns } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
