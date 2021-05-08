@@ -25,6 +25,7 @@ function App() {
             <Header />
 
             <Route exact path='/' component={Home} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
               <div className='w-100' style={{ maxWidth: '800px'}}>
@@ -37,7 +38,6 @@ function App() {
                 <Route path='/register' component={Register} />
                 <Route path='/login' component={Login} />
                 <Route path='/forgot-password' component={ForgotPassword} />
-                <PrivateRoute path='/dashboard' component={Dashboard} />
                 <PrivateRoute path='/update-profile' component={UpdateProfile} />
                 <PrivateRoute path='/create-bank-account' component={CreateBankAccount} />
                 <PrivateRoute path='/create-transaction' component={CreateTransaction} />

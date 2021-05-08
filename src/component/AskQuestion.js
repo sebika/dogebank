@@ -26,23 +26,31 @@ export function AskQuestion() {
   }
 
   return (
-    <Card>
-      <Card.Body>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId='formBasicEmail'>
-            <Form.Label>Your Question</Form.Label>
-            <Form.Control as='textarea' rows={4} ref={textRef} />
-            <Form.Text className='text-muted'>
-              Tell us what bothers you. We will help you as soon as we can.
-              Our answer will be sent to your email.
-            </Form.Text>
-          </Form.Group>
+    <>
+      <Card>
+        <Card.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId='formBasicEmail'>
+              <Form.Label>Your Question</Form.Label>
+              <Form.Control as='textarea' rows={4} ref={textRef} />
+              <Form.Text className='text-muted'>
+                Tell us what bothers you. We will help you as soon as we can.
+                Our answer will be sent to your email.
+              </Form.Text>
+            </Form.Group>
 
-          <Button variant='primary float-right' type='submit'>
-            Submit
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+            <Button variant='primary float-right' type='submit'>
+              Submit
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+
+      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
+        <Button variant='link' onClick={() => history.goBack()}>
+          Cancel
+        </Button>
+      </div>
+    </>
   )
 }

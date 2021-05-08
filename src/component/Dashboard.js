@@ -1,48 +1,71 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Card, Container, ListGroup, CardColumns } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 
 export function Dashboard() {
   const { currentUser } = useAuth()
+  const history = useHistory()
 
-  function DisplayButtons() {
-    return (
-      <>
-        <Link to='/update-profile' className='btn btn-secondary w-100 mt-3'>
-          Update profile
-        </Link>
-
-        <Link to='/create-bank-account' className='btn btn-secondary w-100 mt-3'>
-          Create new bank account
-        </Link>
-
-        <Link to='/create-transaction' className='btn btn-secondary w-100 mt-3'>
-          Create new transaction
-        </Link>
-
-        {
-          currentUser.db.get('is_helpdesk') &&
-          <Link to='/account-creation-requests' className='btn btn-secondary w-100 mt-3'>
-            Account creation requests
-          </Link>
-        }
-      </>
-    )
+  function redirect(path) {
+    history.push(path)
   }
 
   return (
-    <>
-      <Card>
-        <Card.Body>
-          <h2 className='text-center mb-4'>Profile</h2>
-          <strong>Email:</strong> {currentUser.email}
+    <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '50px'}}>
+      <CardColumns>
+        <Card border='secondary'>
+          <Card.Body>
+            <h2 className='text-center mb-4'>Profile</h2>
+            <Card.Subtitle className='text-muted text-center'>
+              Find more details about your profile
+            </Card.Subtitle>
+          </Card.Body>
+          <ListGroup className='text-center'>
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/update-profile')}>
+              Update profile
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
 
-          <DisplayButtons />
+        <Card border='secondary'>
+          <Card.Body>
+            <h2 className='text-center mb-4'>Operations</h2>
+            <Card.Subtitle className='text-muted text-center'>
+              You can make transactions, create accounts, or view account information
+            </Card.Subtitle>
+          </Card.Body>
+          <ListGroup className='text-center'>
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/create-bank-account')}>
+              Create new bank account
+            </ListGroup.Item>
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/create-transaction')}>
+              Create new transaction
+            </ListGroup.Item>
+            {
+            currentUser.db.get('is_helpdesk') &&
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/account-creation-requests')}>
+              Account creation requests
+            </ListGroup.Item>
+            }
+          </ListGroup>
+        </Card>
 
-        </Card.Body>
-      </Card>
-    </>
+        <Card border='secondary'>
+          <Card.Body>
+            <h2 className='text-center mb-4'>Support</h2>
+            <Card.Subtitle className='text-muted text-center'>
+              You and your privacy matter. If you want to learn more ask us any questions
+            </Card.Subtitle>
+          </Card.Body>
+          <ListGroup className='text-center'>
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/support')}>
+              Ask a question
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </CardColumns>
+    </Container>
   )
 }
