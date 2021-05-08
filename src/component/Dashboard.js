@@ -40,6 +40,9 @@ export function Dashboard() {
             <ListGroup.Item action variant='secondary' onClick={() => redirect('/create-bank-account')}>
               Create new bank account
             </ListGroup.Item>
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/show-bank-account')}>
+              Show bank accounts
+            </ListGroup.Item>
             <ListGroup.Item action variant='secondary' onClick={() => redirect('/create-transaction')}>
               Create new transaction
             </ListGroup.Item>
