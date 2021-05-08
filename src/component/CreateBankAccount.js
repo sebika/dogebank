@@ -92,7 +92,7 @@ export function CreateBankAccount() {
 
       <div className='w-100 text-center mt-2'>
         <Button variant='link' onClick={() => history.goBack()}>
-          Go Back
+          Cancel
         </Button>
       </div>
     </>
