@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 import BankAccount from '../models/BankAccount'
@@ -100,7 +100,7 @@ export function CreateTransaction() {
 
     return (
       <>
-        <Card style={{marginBottom:70}}>
+        <Card>
           <Card.Body>
             <h2 className='text-center mb-4'>Create New Transaction</h2>
 
@@ -155,13 +155,14 @@ export function CreateTransaction() {
                 Make transaction
               </Button>
             </Form>
-            <div className='w-100 text-center mt-2'>
-              <Link to='/dashboard'>
-                  Go back
-              </Link>
-            </div>
           </Card.Body>
         </Card>
+
+        <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
+          <Button variant='link' onClick={() => history.goBack()}>
+            Go Back
+          </Button>
+        </div>
       </>
     )
   }

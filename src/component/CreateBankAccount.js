@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 import BankAccount from '../models/BankAccount'
@@ -91,9 +91,9 @@ export function CreateBankAccount() {
       </Card>
 
       <div className='w-100 text-center mt-2'>
-        <Link to='/dashboard'>
-            Go back
-        </Link>
+        <Button variant='link' onClick={() => history.goBack()}>
+          Go Back
+        </Button>
       </div>
     </>
   )
