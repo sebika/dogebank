@@ -65,7 +65,6 @@ export function Dashboard() {
             </ListGroup.Item>
           </ListGroup>
         </Card>
-
       </CardColumns>
     </Container>
   )
