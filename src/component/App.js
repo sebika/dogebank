@@ -14,6 +14,7 @@ import { AskQuestion } from './AskQuestion'
 import { AccountCreationRequest } from './AccountCreationRequest'
 import { AuthProvider } from '../contexts/AuthContext'
 import { CreateBankAccount } from './CreateBankAccount'
+import { CreateTransaction } from './CreateTransaction'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                 <PrivateRoute path='/dashboard' component={Dashboard} />
                 <PrivateRoute path='/update-profile' component={UpdateProfile} />
                 <PrivateRoute path='/create-bank-account' component={CreateBankAccount} />
+                <PrivateRoute path='/create-transaction' component={CreateTransaction} />
                 <PrivateRoute path='/support' component={AskQuestion} />
               </div>
 

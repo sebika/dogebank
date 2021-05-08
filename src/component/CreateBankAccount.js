@@ -31,7 +31,8 @@ export function CreateBankAccount() {
         client: { collection: 'Client', id: currentUser.db.id },
         IBAN: await generateIBAN(),
         moneda: data.currency,
-        nume: data.accountNickname
+        nume: data.accountNickname,
+        suma: 0
       })
   }
 
@@ -59,7 +60,7 @@ export function CreateBankAccount() {
 
   return (
     <>
-      <Card style={{marginTop:-30}}>
+      <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Create New Bank Account</h2>
 
@@ -73,14 +74,13 @@ export function CreateBankAccount() {
 
             <Form.Group id='currency'>
               <Form.Label>Currency</Form.Label>
-              <Form.Control as='select' ref={currencyRef} required >
-                <option value='DOGE'>DOGE</option>
+              <Form.Control as='select' ref={currencyRef} required>
+                <option value='DOGECOIN'>DOGECOIN</option>
                 <option value='RON'>RON</option>
                 <option value='EUR'>EUR</option>
                 <option value='USD'>USD</option>
                 <option value='GBP'>GBP</option>
               </Form.Control>
-
             </Form.Group>
 
             <Button disabled={loading} className='w-100' type='submit'>
@@ -89,6 +89,12 @@ export function CreateBankAccount() {
           </Form>
         </Card.Body>
       </Card>
+
+      <div className='w-100 text-center mt-2'>
+        <Button variant='link' onClick={() => history.goBack()}>
+          Go Back
+        </Button>
+      </div>
     </>
   )
 }

@@ -24,7 +24,7 @@ export function AccountCreationRequest() {
 
   function Requests() {
     return snapshotRequests.map((request, id) => (
-      <RequestCard doc={request} id={id + 1}/>
+      <RequestCard doc={request} id={id + 1} key={id} />
     ))
   }
 
