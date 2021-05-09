@@ -1,10 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 import BankAccount from '../models/BankAccount'
 import Transaction from '../models/Transaction'
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export function CreateTransaction() {
   const senderAccountNameRef = useRef()
@@ -21,6 +25,8 @@ export function CreateTransaction() {
 
   const [snapshotAccounts, setSnapshotAccounts] = useState()
   const [isLoading, setIsLoading] = useState(true)
+
+  const query = useQuery();
 
   useEffect(() => {
     BankAccount.all().where('client.id', '==', currentUser.db.id).get().then((snapshot) => {
@@ -90,10 +96,23 @@ export function CreateTransaction() {
     const [senderIBAN, setSenderIBAN] = useState('')
     const [senderCurrency, setSenderCurrency] = useState('')
 
-    function handleChange() {
+    useEffect(() => {
+      if (!snapshotAccounts || !query.get('name') || query.get('name').length === 0)
+        return
+
+      handleChange(query.get('name'))
+
+    }, [snapshotAccounts])
+
+    function handleChange(event) {
+      // event can either be a String or an Event object
       const currentAccount = snapshotAccounts.find(
-        account => account.get('nume') === senderAccountNameRef.current.value
+        account => account.get('nume') === (event.target ? event.target.value : event)
       )
+
+      if (!currentAccount)
+        return
+
       setSenderIBAN(currentAccount.get('IBAN'))
       setSenderCurrency(currentAccount.get('moneda'))
     }
@@ -109,7 +128,7 @@ export function CreateTransaction() {
             <Form onSubmit={handleSubmit}>
               <Form.Group id='senderAccountName'>
                 <Form.Label>Select bank account</Form.Label>
-                <Form.Control as='select' ref={senderAccountNameRef} onChange={handleChange} required>
+                <Form.Control as='select' ref={senderAccountNameRef} onChange={handleChange} defaultValue={query.get('name')} required>
                   <option style={{display: 'none', disabled: 'true', selected: 'true'}}>
                     Choose an account
                   </option>

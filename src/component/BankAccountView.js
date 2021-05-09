@@ -41,7 +41,11 @@ export function BankAccountView() {
                   <FiMoreVertical size='24' />
                 </Dropdown.Toggle>
                 <Dropdown.Menu align='right'>
-                  <Dropdown.Item eventKey='1' >Create Transaction</Dropdown.Item>
+                  <Dropdown.Item
+                    eventKey='1'
+                    onClick={() => history.push(`/create-transaction?name=${props.doc.get('nume')}`)}>
+                    Create Transaction
+                  </Dropdown.Item>
                   <Dropdown.Item eventKey='2'>View Transactions</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
