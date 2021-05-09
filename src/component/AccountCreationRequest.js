@@ -56,7 +56,7 @@ export function AccountCreationRequest() {
 
   return (
     <>
-      {isLoading ? <div>Loading ...</div> : <Requests/>}
+      {isLoading ? <div>Loading ...</div> : <Requests />}
       <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
         <Button variant='link' onClick={() => history.goBack()}>
           Go Back
