@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
+import { useAuth } from '../contexts/AuthContext'
 import { Login } from './Login'
 import { Footer } from './Footer'
 import { Home } from './Home'
@@ -29,7 +30,8 @@ function App() {
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
               <div className='w-100' style={{ maxWidth: '800px'}}>
-                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest} />
+                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest}
+                  check={(currentUser) =>  currentUser.db.get('is_helpdesk')} />
               </div>
             </Container>
 
