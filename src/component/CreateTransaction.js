@@ -102,7 +102,7 @@ export function CreateTransaction() {
 
       handleChange(query.get('name'))
 
-    }, [snapshotAccounts])
+    }, [])
 
     function handleChange(event) {
       // event can either be a String or an Event object

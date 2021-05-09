@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FiMoreVertical } from 'react-icons/fi'
-import { Card, Button, ListGroup, ListGroupItem, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap'
+import { Card, Button, ListGroup, ListGroupItem, Dropdown, ButtonGroup } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
@@ -17,7 +17,7 @@ export function BankAccountView() {
       setSnapshotRequests(snapshot.docs)
       setIsLoading(false)
     })
-  }, [])
+  }, [currentUser.db.id])
 
   function BankAccountViewCreator() {
     return snapshotRequests.map((request, id) => (
