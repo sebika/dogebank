@@ -16,6 +16,7 @@ import { AuthProvider } from '../contexts/AuthContext'
 import { CreateBankAccount } from './CreateBankAccount'
 import { CreateTransaction } from './CreateTransaction'
 import { BankAccountView } from './BankAccountView'
+import { TransactionView } from './TransactionView'
 import { Profile} from './Profile'
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
                 <PrivateRoute path='/profile' component={Profile} />
                 <PrivateRoute path='/create-bank-account' component={CreateBankAccount} />
                 <PrivateRoute path='/create-transaction' component={CreateTransaction} />
+                <PrivateRoute path='/transactions' component={TransactionView} />
                 <PrivateRoute path='/support' component={AskQuestion} />
                 <PrivateRoute path='/show-bank-account' component={BankAccountView} />
               </div>

@@ -53,6 +53,9 @@ export function Dashboard() {
             <ListGroup.Item action variant='info' onClick={() => redirect('/show-bank-account')}>
               <BsEye size='25px'/> View bank accounts
             </ListGroup.Item>
+            <ListGroup.Item action variant='info' onClick={() => redirect('/transactions')}>
+              <BsEye size='25px'/> View transactions
+            </ListGroup.Item>
             {
             currentUser.db.get('is_helpdesk') &&
             <ListGroup.Item action variant='info' onClick={() => redirect('/account-creation-requests')}>
