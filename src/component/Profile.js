@@ -1,11 +1,12 @@
 import React from 'react'
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { useAuth } from '../contexts/AuthContext'
 
 export function Profile() {
   const { currentUser } = useAuth()
+  const history = useHistory()
 
   return (
     <>
@@ -30,8 +31,10 @@ export function Profile() {
         </Card.Body>
       </Card>
 
-      <div className='w-100 text-center mt-2'>
-        <Link to='/dashboard'>Go Back</Link>
+      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
+        <Button variant='link' onClick={() => history.goBack()}>
+          Go Back
+        </Button>
       </div>
       
     </>
