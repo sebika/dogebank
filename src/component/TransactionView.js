@@ -18,16 +18,18 @@ export function TransactionView() {
       const currentUserAccounts = await BankAccount.all().where('client.id', '==', currentUser.db.id).get()
       const accountIds = currentUserAccounts.docs.map(doc => doc.id)
 
-      const isSender = Transaction.all().where('expeditor.id', 'in', accountIds).get()
-      const isReceiver = Transaction.all().where('destinatar.id', 'in', accountIds).get()
+      if (accountIds.length > 0) {
+        const isSender = Transaction.all().where('expeditor.id', 'in', accountIds).get()
+        const isReceiver = Transaction.all().where('destinatar.id', 'in', accountIds).get()
 
-      const [
-        sentTransactions,
-        receivedTransactions
-      ] = await Promise.all([isSender, isReceiver])
+        const [
+          sentTransactions,
+          receivedTransactions
+        ] = await Promise.all([isSender, isReceiver])
 
-      const transactions = _.concat(sentTransactions.docs, receivedTransactions.docs)
-      setCurrentUserTransactions(_.uniqWith(transactions, _.isEqual))
+        const transactions = _.concat(sentTransactions.docs, receivedTransactions.docs)
+        setCurrentUserTransactions(_.uniqWith(transactions, _.isEqual))
+      }
       setIsLoading(false)
     }
 
