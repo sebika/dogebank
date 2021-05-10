@@ -16,6 +16,7 @@ import { AuthProvider } from '../contexts/AuthContext'
 import { CreateBankAccount } from './CreateBankAccount'
 import { CreateTransaction } from './CreateTransaction'
 import { BankAccountView } from './BankAccountView'
+import { TransactionView } from './TransactionView'
 import { Profile} from './Profile'
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <div className='w-100' style={{ maxWidth: '800px'}}>
                 <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest}
                   check={(currentUser) =>  currentUser.db.get('is_helpdesk')} />
+                <PrivateRoute path='/transactions' component={TransactionView} />
               </div>
             </Container>
 

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useHistory, useLocation } from 'react-router-dom'
+import firebase from "firebase/app";
 
 import { useAuth } from '../contexts/AuthContext'
 import BankAccount from '../models/BankAccount'
@@ -71,7 +72,8 @@ export function CreateTransaction() {
       destinatar: {collection: 'BankAccount', id: recipient.id},
       suma: Number(amountRef.current.value),
       moneda: currencyRef.current.value,
-      mesaj: messageRef.current.value
+      mesaj: messageRef.current.value,
+      data: firebase.firestore.Timestamp.now().seconds
     }
   }
 
