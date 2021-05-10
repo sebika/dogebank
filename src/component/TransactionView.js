@@ -1,63 +1,56 @@
 import React, { useState, useEffect } from 'react'
-import { FiMoreVertical } from 'react-icons/fi'
-import { Card, Button, ListGroup, ListGroupItem, Dropdown, ButtonGroup } from 'react-bootstrap'
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import _ from "lodash";
 
 import { useAuth } from '../contexts/AuthContext'
+import Transaction from '../models/Transaction'
 import BankAccount from '../models/BankAccount'
 
 export function TransactionView() {
-  const [snapshotRequests, setSnapshotRequests] = useState()
+  const [currentUserTransactions, setCurrentUserTransactions] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const { currentUser } = useAuth()
   const history = useHistory()
 
   useEffect(() => {
-    BankAccount.all().where('client.id', '==', currentUser.db.id).get().then((snapshot) => {
-      setSnapshotRequests(snapshot.docs)
+    async function getCurrentUserTransactions() {
+      const currentUserAccounts = await BankAccount.all().where('client.id', '==', currentUser.db.id).get()
+      const accountIds = currentUserAccounts.docs.map(doc => doc.id)
+
+      const isSender = Transaction.all().where('expeditor.id', 'in', accountIds).get()
+      const isReceiver = Transaction.all().where('destinatar.id', 'in', accountIds).get()
+
+      const [
+        sentTransactions,
+        receivedTransactions
+      ] = await Promise.all([isSender, isReceiver])
+
+      const transactions = _.concat(sentTransactions.docs, receivedTransactions.docs)
+      setCurrentUserTransactions(_.uniqWith(transactions, _.isEqual))
       setIsLoading(false)
-    })
+    }
+
+    getCurrentUserTransactions()
   }, [currentUser.db.id])
 
-  function BankAccountViewCreator() {
-    return snapshotRequests.map((request, id) => (
-      <BankAccountCard doc={request} id={id + 1} key={id} />
+  function TransactionViewCreator() {
+    return currentUserTransactions.map((request, id) => (
+      <TransactionCard doc={request} id={id + 1} key={id} />
     ))
   }
 
-  function BankAccountCard(props) {
+  function TransactionCard(props) {
     return (
       <>
         <Card border='secondary' className='mt-3'>
-          <Card.Header>
-            <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}>
-              {props.doc.get('nume')}
-              <Dropdown as={ButtonGroup} >
-                <Dropdown.Toggle variant='link' bsPrefix='p-0'>
-                  <FiMoreVertical size='24' />
-                </Dropdown.Toggle>
-                <Dropdown.Menu align='right'>
-                  <Dropdown.Item
-                    eventKey='1'
-                    onClick={() => history.push(`/create-transaction?name=${props.doc.get('nume')}`)}>
-                    Create Transaction
-                  </Dropdown.Item>
-                  <Dropdown.Item eventKey='2'>View Transactions</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-          </Card.Header>
+          <Card.Header>Transaction no. {props.id}</Card.Header>
           <Card.Body>
             <ListGroup className='list-group-flush'>
-              <ListGroupItem><strong>IBAN: </strong> {props.doc.get('IBAN')}</ListGroupItem>
-              <ListGroupItem><strong>Sold: </strong> {props.doc.get('suma')} {props.doc.get('moneda')}</ListGroupItem>
+              <ListGroupItem><strong>Currency: </strong> {props.doc.get('moneda')}</ListGroupItem>
+              <ListGroupItem><strong>Message: </strong> {props.doc.get('mesaj')}</ListGroupItem>
+              <ListGroupItem><strong>Amount: </strong> {props.doc.get('suma')}</ListGroupItem>
             </ListGroup>
-
-            <Button variant='btn btn-danger ml-3 float-right'>Close Account</Button>
           </Card.Body>
         </Card>
       </>
@@ -66,7 +59,7 @@ export function TransactionView() {
 
   return (
     <>
-      {isLoading ? <div>Loading ...</div> : <BankAccountViewCreator />}
+      {isLoading ? <div>Loading ...</div> : <TransactionViewCreator />}
       <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
         <Button variant='link' onClick={() => history.goBack()}>
           Go Back
