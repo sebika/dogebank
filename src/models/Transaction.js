@@ -7,7 +7,8 @@ export default class Transaction {
     destinatar:             Field.ForeignKey(),
     suma:                   Field.Number(),
     moneda:                 Field.String(),
-    mesaj:                  Field.String()
+    mesaj:                  Field.String(),
+    data:                   Field.Number()
   }
 
   static collection = 'Transaction'
