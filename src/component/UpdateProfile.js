@@ -87,8 +87,11 @@ export function UpdateProfile() {
           </Form>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'>
-        <Link to='/dashboard'>Cancel</Link>
+
+      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
+        <Button variant='link' onClick={() => history.goBack()}>
+          Go Back
+        </Button>
       </div>
     </>
   )

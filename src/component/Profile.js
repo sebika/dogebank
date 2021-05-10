@@ -24,7 +24,7 @@ export function Profile() {
           </ListGroup>
 
           <Link to='/update-profile'>
-            <Button className='w-100'>
+            <Button className='w-100' type='submit'>
               Update Profile
             </Button>
           </Link>
@@ -36,7 +36,6 @@ export function Profile() {
           Go Back
         </Button>
       </div>
-      
     </>
   )
 }

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
-import { useAuth } from '../contexts/AuthContext'
 import { Login } from './Login'
 import { Footer } from './Footer'
 import { Home } from './Home'
