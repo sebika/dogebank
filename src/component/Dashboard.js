@@ -1,6 +1,10 @@
 import React from 'react'
 import { Card, Container, ListGroup, CardColumns } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import { AiOutlinePlusSquare } from 'react-icons/ai'
+import { BsEye } from 'react-icons/bs'
+import { MdUpdate } from 'react-icons/md'
+import { RiQuestionnaireLine } from 'react-icons/ri'
 
 import { useAuth } from '../contexts/AuthContext'
 
@@ -23,11 +27,11 @@ export function Dashboard() {
             </Card.Subtitle>
           </Card.Body>
           <ListGroup className='text-center'>
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/update-profile')}>
-              Update profile
+            <ListGroup.Item action variant='warning' onClick={() => redirect('/update-profile')}>
+              <MdUpdate size='25px' /> Update profile
             </ListGroup.Item>
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/profile')}>
-              View Profile
+            <ListGroup.Item action variant='info' onClick={() => redirect('/profile')}>
+              <BsEye size='25px' /> View Profile
             </ListGroup.Item>
           </ListGroup>
         </Card>
@@ -40,19 +44,19 @@ export function Dashboard() {
             </Card.Subtitle>
           </Card.Body>
           <ListGroup className='text-center'>
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/create-bank-account')}>
-              Create new bank account
+            <ListGroup.Item action variant='success' onClick={() => redirect('/create-bank-account')}>
+              <AiOutlinePlusSquare size='25px'/> Create new bank account
             </ListGroup.Item>
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/show-bank-account')}>
-              Show bank accounts
+            <ListGroup.Item action variant='success' onClick={() => redirect('/create-transaction')}>
+              <AiOutlinePlusSquare size='25px'/> Create new transaction
             </ListGroup.Item>
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/create-transaction')}>
-              Create new transaction
+            <ListGroup.Item action variant='info' onClick={() => redirect('/show-bank-account')}>
+              <BsEye size='25px'/> View bank accounts
             </ListGroup.Item>
             {
             currentUser.db.get('is_helpdesk') &&
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/account-creation-requests')}>
-              Account creation requests
+            <ListGroup.Item action variant='info' onClick={() => redirect('/account-creation-requests')}>
+              <BsEye size='25px'/> View account requests
             </ListGroup.Item>
             }
           </ListGroup>
@@ -66,8 +70,8 @@ export function Dashboard() {
             </Card.Subtitle>
           </Card.Body>
           <ListGroup className='text-center'>
-            <ListGroup.Item action variant='secondary' onClick={() => redirect('/support')}>
-              Ask a question
+            <ListGroup.Item action variant='dark' onClick={() => redirect('/support')}>
+              <RiQuestionnaireLine size='25px' /> Ask a question
             </ListGroup.Item>
           </ListGroup>
         </Card>
