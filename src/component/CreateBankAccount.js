@@ -13,11 +13,14 @@ export function CreateBankAccount() {
   const history = useHistory()
   const { currentUser } = useAuth()
 
+  function validateData() {
+    if (accountNicknameRef.current.value.length <= 0)
+      throw Error('Your account must have a name')
+  }
+
   async function generateIBAN() {
     while (1) {
-      let IBAN = 'RO69DOGE'
-
-      IBAN += [...Array(16).keys()].map(() => Math.floor(Math.random() * 10)).join('')
+      const IBAN = 'RO69DOGE' + [...Array(16).keys()].map(() => Math.floor(Math.random() * 10)).join('')
 
       const IBANQuery = (await BankAccount.all().where('IBAN', '==', IBAN).get())
 
@@ -42,6 +45,8 @@ export function CreateBankAccount() {
     try {
       setError('')
       setLoading(true)
+
+      validateData()
 
       const data = {
         accountNickname: accountNicknameRef.current.value,

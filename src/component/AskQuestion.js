@@ -10,8 +10,18 @@ export function AskQuestion() {
   const { currentUser } = useAuth()
   const history = useHistory()
 
+  function validateData() {
+    if (textRef.current.value.length <= 0)
+      throw Error('You cannot submit an empty question')
+
+    if (textRef.current.value.length > 2000)
+      throw Error('Your question is bigger than 2000 characters')
+  }
+
   async function handleSubmit(e) {
     e.preventDefault()
+
+    validateData()
 
     const data = {
       client: {

@@ -21,6 +21,26 @@ export function Register() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+  function validateData() {
+    if (firstNameRef.current.value.length <= 0)
+      throw Error('You must fill in your first name')
+
+    if (lastNameRef.current.value.length <= 0)
+      throw Error('You must fill in your last name')
+
+    if (cnpRef.current.value.length !== 13)
+      throw Error('Your CNP does not have exactly 13 characters')
+
+    if (/^\d+$/.test(cnpRef.current.value) === false)
+      throw Error('Your CNP contains non-digit characters')
+
+    if (addressRef.current.value.length <= 0)
+      throw Error('You must fill in your address')
+
+    if (usernameRef.current.value.length <= 0 && usernameRef.current.value.length >= 6)
+      throw Error('Your username must be at least 6 characters long')
+  }
+
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -31,6 +51,8 @@ export function Register() {
     try {
       setError('')
       setLoading(true)
+
+      validateData()
 
       const data = {
         firstName: firstNameRef.current.value,
