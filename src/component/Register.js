@@ -37,7 +37,7 @@ export function Register() {
     if (addressRef.current.value.length <= 0)
       throw Error('You must fill in your address')
 
-    if (usernameRef.current.value.length <= 0 && usernameRef.current.value.length >= 6)
+    if (usernameRef.current.value.length < 6)
       throw Error('Your username must be at least 6 characters long')
   }
 
