@@ -26,6 +26,9 @@ export function Dashboard() {
             <ListGroup.Item action variant='secondary' onClick={() => redirect('/update-profile')}>
               Update profile
             </ListGroup.Item>
+            <ListGroup.Item action variant='secondary' onClick={() => redirect('/profile')}>
+              View Profile
+            </ListGroup.Item>
           </ListGroup>
         </Card>
 
