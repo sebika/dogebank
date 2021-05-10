@@ -49,8 +49,6 @@ export function TransactionView() {
         }
         setCurrentUserTransactions(transactionList)
       }
-
-
       setIsLoading(false)
     }
 
