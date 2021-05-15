@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
   async function register(data) {
     return auth.createUserWithEmailAndPassword(data.email, data.password).then(async (_) => {
       await auth.signOut()
+      setCurrentUser(undefined)
 
       await Client.create({
         nume: data.lastName,
@@ -77,7 +78,7 @@ export function AuthProvider({ children }) {
     })
 
     return unsubscribe
-  }, [])
+  }, [currentUser])
 
   const value = {
     currentUser,
