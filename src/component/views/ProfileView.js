@@ -16,7 +16,7 @@ export function ProfileView() {
 
           <ListGroup className='list-group-flush'>
               <ListGroupItem><strong>First Name: </strong> {currentUser.db.get('prenume')}</ListGroupItem>
-              <ListGroupItem><strong>Second Name: </strong> {currentUser.db.get('nume')}</ListGroupItem>
+              <ListGroupItem><strong>Last Name: </strong> {currentUser.db.get('nume')}</ListGroupItem>
               <ListGroupItem><strong>Username: </strong> {currentUser.db.get('nume_utilizator')}</ListGroupItem>
               <ListGroupItem><strong>Email: </strong> {currentUser.db.get('mail')}</ListGroupItem>
               <ListGroupItem><strong>National ID: </strong> {currentUser.db.get('CNP')}</ListGroupItem>
