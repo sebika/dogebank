@@ -3,15 +3,15 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useHistory, useLocation } from 'react-router-dom'
 import firebase from "firebase/app";
 
-import { useAuth } from '../contexts/AuthContext'
-import BankAccount from '../models/BankAccount'
-import Transaction from '../models/Transaction'
+import { useAuth } from '../../contexts/AuthContext'
+import BankAccount from '../../models/BankAccount'
+import Transaction from '../../models/Transaction'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export function CreateTransaction() {
+export function CreateTransactionView() {
   const senderAccountNameRef = useRef()
   const IBANSenderRef = useRef()
   const IBANRecipientRef = useRef()

@@ -5,9 +5,9 @@ import { RiLockPasswordLine } from 'react-icons/ri'
 import { FaAddressBook } from 'react-icons/fa'
 import { Link, useHistory } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 
-export function Register() {
+export function RegisterView() {
   const emailRef = useRef()
   const firstNameRef = useRef()
   const lastNameRef = useRef()

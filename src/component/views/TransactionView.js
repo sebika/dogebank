@@ -3,10 +3,10 @@ import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import _ from "lodash";
 
-import { useAuth } from '../contexts/AuthContext'
-import Transaction from '../models/Transaction'
-import BankAccount from '../models/BankAccount'
-import Client from '../models/Client';
+import { useAuth } from '../../contexts/AuthContext'
+import Transaction from '../../models/Transaction'
+import BankAccount from '../../models/BankAccount'
+import Client from '../../models/Client';
 
 export function TransactionView() {
   const [currentUserTransactions, setCurrentUserTransactions] = useState()

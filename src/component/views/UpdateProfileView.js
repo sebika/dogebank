@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
-import Client from '../models/Client'
+import { useAuth } from '../../contexts/AuthContext'
+import Client from '../../models/Client'
 
-export function UpdateProfile() {
+export function UpdateProfileView() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()

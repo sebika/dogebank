@@ -1,23 +1,24 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
-import { Login } from './Login'
 import { Footer } from './Footer'
-import { Home } from './Home'
 import { Header } from './Header'
-import { Register } from './Register'
-import { Dashboard } from './Dashboard'
-import { ForgotPassword } from './ForgotPassword'
-import { UpdateProfile } from './UpdateProfile'
 import { PrivateRoute } from './PrivateRoute'
-import { AskQuestion } from './AskQuestion'
-import { AccountCreationRequest } from './AccountCreationRequest'
 import { AuthProvider } from '../contexts/AuthContext'
-import { CreateBankAccount } from './CreateBankAccount'
-import { CreateTransaction } from './CreateTransaction'
-import { BankAccountView } from './BankAccountView'
-import { TransactionView } from './TransactionView'
-import { Profile} from './Profile'
+
+import { LoginView } from './views/LoginView'
+import { HomeView } from './views/HomeView'
+import { RegisterView } from './views/RegisterView'
+import { DashboardView } from './views/DashboardView'
+import { ForgotPasswordView } from './views/ForgotPasswordView'
+import { UpdateProfileView } from './views/UpdateProfileView'
+import { AskQuestionView } from './views/AskQuestionView'
+import { AccountCreationRequestView } from './views/AccountCreationRequestView'
+import { CreateBankAccountView } from './views/CreateBankAccountView'
+import { CreateTransactionView } from './views/CreateTransactionView'
+import { BankAccountView } from './views/BankAccountView'
+import { TransactionView } from './views/TransactionView'
+import { ProfileView} from './views/ProfileView'
 
 function App() {
   return (
@@ -27,12 +28,12 @@ function App() {
           <AuthProvider>
             <Header />
 
-            <Route exact path='/' component={Home} />
-            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/' component={HomeView} />
+            <PrivateRoute exact path='/dashboard' component={DashboardView} />
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
               <div className='w-100' style={{ maxWidth: '800px'}}>
-                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequest}
+                <PrivateRoute path='/account-creation-requests' component={AccountCreationRequestView}
                   check={(currentUser) =>  currentUser.db.get('is_helpdesk')} />
                 <PrivateRoute path='/transactions' component={TransactionView} />
               </div>
@@ -40,14 +41,14 @@ function App() {
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '50px'}}>
               <div className='w-100' style={{ maxWidth: '500px'}}>
-                <Route path='/register' component={Register} />
-                <Route path='/login' component={Login} />
-                <Route path='/forgot-password' component={ForgotPassword} />
-                <PrivateRoute path='/update-profile' component={UpdateProfile} />
-                <PrivateRoute path='/profile' component={Profile} />
-                <PrivateRoute path='/create-bank-account' component={CreateBankAccount} />
-                <PrivateRoute path='/create-transaction' component={CreateTransaction} />
-                <PrivateRoute path='/support' component={AskQuestion} />
+                <Route path='/register' component={RegisterView} />
+                <Route path='/login' component={LoginView} />
+                <Route path='/forgot-password' component={ForgotPasswordView} />
+                <PrivateRoute path='/update-profile' component={UpdateProfileView} />
+                <PrivateRoute path='/profile' component={ProfileView} />
+                <PrivateRoute path='/create-bank-account' component={CreateBankAccountView} />
+                <PrivateRoute path='/create-transaction' component={CreateTransactionView} />
+                <PrivateRoute path='/support' component={AskQuestionView} />
                 <PrivateRoute path='/show-bank-account' component={BankAccountView} />
               </div>
 
