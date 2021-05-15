@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
-import BankAccount from '../models/BankAccount'
+import { useAuth } from '../../contexts/AuthContext'
+import BankAccount from '../../models/BankAccount'
 
-export function CreateBankAccount() {
+export function CreateBankAccountView() {
   const accountNicknameRef = useRef()
   const currencyRef = useRef()
   const [error, setError] = useState('')

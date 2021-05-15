@@ -2,9 +2,9 @@ import React from 'react'
 import { Button, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 
-export function Profile() {
+export function ProfileView() {
   const { currentUser } = useAuth()
   const history = useHistory()
 

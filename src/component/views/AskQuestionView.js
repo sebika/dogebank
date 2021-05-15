@@ -2,10 +2,10 @@ import { useRef } from 'react'
 import { Card, Button, Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-import Question from '../models/Question'
-import { useAuth } from '../contexts/AuthContext'
+import Question from '../../models/Question'
+import { useAuth } from '../../contexts/AuthContext'
 
-export function AskQuestion() {
+export function AskQuestionView() {
   const textRef = useRef()
   const { currentUser } = useAuth()
   const history = useHistory()

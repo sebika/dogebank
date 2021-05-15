@@ -4,9 +4,9 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { Link, useHistory } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 
-export function Login() {
+export function LoginView() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function Home() {
+export function HomeView() {
   return (
     <div className='home'>
       <div className='container'>

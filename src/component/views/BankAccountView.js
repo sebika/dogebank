@@ -3,8 +3,8 @@ import { FiMoreVertical } from 'react-icons/fi'
 import { Card, Button, ListGroup, ListGroupItem, Dropdown, ButtonGroup } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
-import BankAccount from '../models/BankAccount'
+import { useAuth } from '../../contexts/AuthContext'
+import BankAccount from '../../models/BankAccount'
 
 export function BankAccountView() {
   const [snapshotRequests, setSnapshotRequests] = useState()

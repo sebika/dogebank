@@ -6,9 +6,9 @@ import { BsEye } from 'react-icons/bs'
 import { MdUpdate } from 'react-icons/md'
 import { RiQuestionnaireLine } from 'react-icons/ri'
 
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 
-export function Dashboard() {
+export function DashboardView() {
   const { currentUser } = useAuth()
   const history = useHistory()
 

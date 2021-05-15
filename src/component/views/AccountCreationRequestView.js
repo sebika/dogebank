@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-import ClientAccountCreation from '../models/ClientAccountCreation'
-import Client from '../models/Client'
+import ClientAccountCreation from '../../models/ClientAccountCreation'
+import Client from '../../models/Client'
 
-export function AccountCreationRequest() {
+export function AccountCreationRequestView() {
   const [snapshotRequests, setSnapshotRequests] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const history = useHistory()
