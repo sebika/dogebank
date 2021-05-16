@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../../contexts/AuthContext'
 import BankAccount from '../../models/BankAccount'
+import { GoBackLink } from '../GoBackLink'
 
 export function BankAccountView() {
   const [snapshotRequests, setSnapshotRequests] = useState()
@@ -67,11 +68,7 @@ export function BankAccountView() {
   return (
     <>
       {isLoading ? <div>Loading ...</div> : <BankAccountViewCreator />}
-      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Go Back
-        </Button>
-      </div>
+      <GoBackLink />
     </>
   )
 }

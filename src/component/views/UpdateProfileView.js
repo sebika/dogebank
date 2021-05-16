@@ -5,6 +5,7 @@ import { auth } from '../../firebase'
 
 import { useAuth } from '../../contexts/AuthContext'
 import Client from '../../models/Client'
+import { GoBackLink } from '../GoBackLink'
 
 export function UpdateProfileView() {
   const firstNameRef = useRef()
@@ -163,11 +164,7 @@ export function UpdateProfileView() {
         </Card.Body>
       </Card>
 
-      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Go Back
-        </Button>
-      </div>
+      <GoBackLink text='Cancel'/>
     </>
   )
 }

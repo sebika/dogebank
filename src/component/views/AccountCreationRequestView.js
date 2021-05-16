@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
 
 import ClientAccountCreation from '../../models/ClientAccountCreation'
 import Client from '../../models/Client'
+import { GoBackLink } from '../GoBackLink'
 
 export function AccountCreationRequestView() {
   const [snapshotRequests, setSnapshotRequests] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const history = useHistory()
 
   useEffect(() => {
     ClientAccountCreation.all().get().then((snapshot) => {
@@ -57,11 +56,7 @@ export function AccountCreationRequestView() {
   return (
     <>
       {isLoading ? <div>Loading ...</div> : <Requests />}
-      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Go Back
-        </Button>
-      </div>
+      <GoBackLink />
     </>
   )
 }

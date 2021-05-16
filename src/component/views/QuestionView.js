@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
 
 import Question from '../../models/Question'
 import Client from '../../models/Client'
+import { GoBackLink } from '../GoBackLink'
 
 export function QuestionView() {
   const [snapshotRequests, setSnapshotRequests] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const history = useHistory()
 
   useEffect(() => {
     async function getQuestions() {
@@ -52,11 +51,7 @@ export function QuestionView() {
   return (
     <>
       {isLoading ? <div>Loading ...</div> : <QuestionViewCreator />}
-      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Go Back
-        </Button>
-      </div>
+      <GoBackLink />
     </>
   )
 }
