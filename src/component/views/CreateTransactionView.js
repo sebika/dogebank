@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import { useAuth } from '../../contexts/AuthContext'
 import BankAccount from '../../models/BankAccount'
 import Transaction from '../../models/Transaction'
+import { GoBackLink } from '../GoBackLink'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -179,11 +180,7 @@ export function CreateTransactionView() {
           </Card.Body>
         </Card>
 
-        <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-          <Button variant='link' onClick={() => history.goBack()}>
-            Cancel
-          </Button>
-        </div>
+        <GoBackLink text='Cancel'/>
       </>
     )
   }

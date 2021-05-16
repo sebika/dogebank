@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import Question from '../../models/Question'
 import { useAuth } from '../../contexts/AuthContext'
+import { GoBackLink } from '../GoBackLink'
 
 export function AskQuestionView() {
   const textRef = useRef()
@@ -56,11 +57,7 @@ export function AskQuestionView() {
         </Card.Body>
       </Card>
 
-      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Cancel
-        </Button>
-      </div>
+      <GoBackLink text='Cancel'/>
     </>
   )
 }

@@ -62,6 +62,12 @@ export function DashboardView() {
               <BsEye size='25px'/> View account requests
             </ListGroup.Item>
             }
+            {
+            currentUser.db.get('is_helpdesk') &&
+            <ListGroup.Item action variant='info' onClick={() => redirect('/questions')}>
+              <BsEye size='25px'/> View questions
+            </ListGroup.Item>
+            }
           </ListGroup>
         </Card>
 

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../../contexts/AuthContext'
 import BankAccount from '../../models/BankAccount'
+import { GoBackLink } from '../GoBackLink'
 
 export function CreateBankAccountView() {
   const accountNicknameRef = useRef()
@@ -95,11 +96,7 @@ export function CreateBankAccountView() {
         </Card.Body>
       </Card>
 
-      <div className='w-100 text-center mt-2'>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Cancel
-        </Button>
-      </div>
+      <GoBackLink text='Cancel'/>
     </>
   )
 }

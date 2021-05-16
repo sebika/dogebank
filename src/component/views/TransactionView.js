@@ -6,7 +6,8 @@ import _ from "lodash";
 import { useAuth } from '../../contexts/AuthContext'
 import Transaction from '../../models/Transaction'
 import BankAccount from '../../models/BankAccount'
-import Client from '../../models/Client';
+import Client from '../../models/Client'
+import { GoBackLink } from '../GoBackLink'
 
 export function TransactionView() {
   const [currentUserTransactions, setCurrentUserTransactions] = useState()
@@ -93,11 +94,7 @@ export function TransactionView() {
   return (
     <>
       {isLoading ? <div>Loading ...</div> : <TransactionViewCreator />}
-      <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-        <Button variant='link' onClick={() => history.goBack()}>
-          Go Back
-        </Button>
-      </div>
+      <GoBackLink />
     </>
   )
 }
