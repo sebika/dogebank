@@ -19,6 +19,7 @@ import { CreateTransactionView } from './views/CreateTransactionView'
 import { BankAccountView } from './views/BankAccountView'
 import { TransactionView } from './views/TransactionView'
 import { ProfileView} from './views/ProfileView'
+import { QuestionView } from './views/QuestionView'
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
                 <PrivateRoute path='/create-transaction' component={CreateTransactionView} />
                 <PrivateRoute path='/support' component={AskQuestionView} />
                 <PrivateRoute path='/show-bank-account' component={BankAccountView} />
+                <PrivateRoute path='/questions' component={QuestionView} />
               </div>
 
             </Container>
