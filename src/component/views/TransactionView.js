@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import _ from "lodash";
 
 import { useAuth } from '../../contexts/AuthContext'
@@ -13,7 +12,6 @@ export function TransactionView() {
   const [currentUserTransactions, setCurrentUserTransactions] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const { currentUser } = useAuth()
-  const history = useHistory()
 
   useEffect(() => {
     async function getCurrentUserTransactions() {
