@@ -6,10 +6,13 @@ import { useHistory } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import BankAccount from '../../models/BankAccount'
 import { GoBackLink } from '../GoBackLink'
+import { DeleteAccountModal } from '../DeleteAccountModal'
 
 export function BankAccountView() {
   const [snapshotRequests, setSnapshotRequests] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [modalShow, setModalShow] = useState(false)
+  const [accountToDelete, setAccountToDelete] = useState()
   const { currentUser } = useAuth()
   const history = useHistory()
 
@@ -58,7 +61,11 @@ export function BankAccountView() {
               <ListGroupItem><strong>Sold: </strong> {props.doc.get('suma')} {props.doc.get('moneda')}</ListGroupItem>
             </ListGroup>
 
-            <Button variant='btn btn-danger ml-3 float-right'>Close Account</Button>
+            <Button
+            variant='btn btn-danger ml-3 float-right'
+            onClick={() => {setModalShow(true); setAccountToDelete(props.doc)}}>
+              Close Account
+            </Button>
           </Card.Body>
         </Card>
       </>
@@ -68,6 +75,13 @@ export function BankAccountView() {
   return (
     <>
       {isLoading ? <div>Loading ...</div> : <BankAccountViewCreator />}
+      {modalShow &&
+        <DeleteAccountModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          account={accountToDelete}
+        />
+      }
       <GoBackLink />
     </>
   )
