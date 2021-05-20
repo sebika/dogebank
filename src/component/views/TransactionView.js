@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
-import _ from "lodash";
+import _ from 'lodash';
 
 import { useAuth } from '../../contexts/AuthContext'
 import Transaction from '../../models/Transaction'

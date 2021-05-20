@@ -4,9 +4,13 @@ import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import Question from '../../models/Question'
 import Client from '../../models/Client'
 import { GoBackLink } from '../GoBackLink'
+import { SendQuestionAnswerModal } from '../SendQuestionAnswerModal'
 
 export function QuestionView() {
   const [snapshotRequests, setSnapshotRequests] = useState()
+  const [modalShow, setModalShow] = useState(false)
+  const [selectedQuestion, setSelectedQuestion] = useState()
+  const [accountToDelete, setAccountToDelete] = useState()
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export function QuestionView() {
               </ListGroupItem>
               <ListGroupItem><strong>Question: </strong> {props.doc.get('intrebare')}</ListGroupItem>
             </ListGroup>
-            <Button variant='btn btn-primary ml-3 float-right'>Answer</Button>
+            <Button variant='btn btn-primary ml-3 float-right' onClick={() => {setModalShow(true); setSelectedQuestion(props.doc); setAccountToDelete(props.doc.clientRef)}}>Answer</Button>
           </Card.Body>
         </Card>
       </>
@@ -51,6 +55,14 @@ export function QuestionView() {
   return (
     <>
       {isLoading ? <div>Loading ...</div> : <QuestionViewCreator />}
+      {modalShow &&
+        <SendQuestionAnswerModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          account={accountToDelete}
+          currentQuestion={selectedQuestion}
+        />
+      }
       <GoBackLink />
     </>
   )
