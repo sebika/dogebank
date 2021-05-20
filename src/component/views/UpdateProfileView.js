@@ -74,6 +74,7 @@ export function UpdateProfileView() {
           })
         }
         history.push('/profile')
+        window.location.reload()
       })
       .catch((err) => {
         setError(`${err}`)
@@ -89,7 +90,7 @@ export function UpdateProfileView() {
         user.db = (await Client.all().where('mail', '==', user.email).get()).docs[0]
       setCurrentUser(user)
     })
-  })
+  }, [setCurrentUser])
 
   return (
     <>
