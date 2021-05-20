@@ -3,13 +3,13 @@ import 'firebase/auth'
 import 'firebase'
 
 const app = firebase.initializeApp({
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+    apiKey: "AIzaSyDx9yELRjmSCtwHrEcRUhOKXob_2Od8vgY",
+    authDomain: "dogebank-connect.firebaseapp.com",
+    projectId: "dogebank-connect",
+    storageBucket: "dogebank-connect.appspot.com",
+    messagingSenderId: "225936319423",
+    appId: "1:225936319423:web:c2dab13abefb1322a8370a",
+    measurementId: "G-57H96PV20F"
 })
 
 export const auth = app.auth()

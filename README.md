@@ -22,8 +22,3 @@ npm install -g firebase-tools
 ```
 npm install
 ```
-
-### Local environment
-- Make a copy of `.env-example.local` file and name it `.env.local`
-- Go to firebase and get the environment variables.
-- Copy and paste them in `.env.local` file.
