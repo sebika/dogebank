@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import { useHistory, useLocation } from 'react-router-dom'
-import firebase from "firebase/app";
+import firebase from 'firebase/app';
 
 import { useAuth } from '../../contexts/AuthContext'
 import BankAccount from '../../models/BankAccount'
