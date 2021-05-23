@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
@@ -29,11 +30,11 @@ export function Header() {
     else {
       return (
         <>
-          <Nav.Link href='/login'>
+          <Nav.Link as={Link} to='/login'>
               <Button variant='info' size='lg'>Log in</Button>
             </Nav.Link>
 
-          <Nav.Link href='/register'>
+          <Nav.Link as={Link} to='/register'>
             <Button variant='danger' size='lg'>Register</Button>
           </Nav.Link>
         </>
@@ -51,10 +52,10 @@ export function Header() {
       <Navbar.Collapse id='responsive-navbar-nav'>
 
         <Nav className='mr-auto'>
-          <Nav.Link href='/about'>
+          <Nav.Link as={Link} to='/about'>
             <h5 className='linkText'>About US</h5>
           </Nav.Link>
-          <Nav.Link href='/support'>
+          <Nav.Link as={Link} to='/support'>
             <h5 className='linkText'>Support</h5>
           </Nav.Link>
         </Nav>

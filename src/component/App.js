@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 
 import { Footer } from './Footer'
@@ -22,14 +22,15 @@ import { ProfileView} from './views/ProfileView'
 import { QuestionView } from './views/QuestionView'
 
 function App() {
+
   return (
     <>
-      <Router>
+      <HashRouter>
         <Switch>
           <AuthProvider>
             <Header />
 
-            <Route exact path='/' component={HomeView} />
+            <Route path='/' component={HomeView} />
             <PrivateRoute exact path='/dashboard' component={DashboardView} />
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
@@ -42,8 +43,8 @@ function App() {
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '50px'}}>
               <div className='w-100' style={{ maxWidth: '500px'}}>
-                <Route path='/register' component={RegisterView} />
-                <Route path='/login' component={LoginView} />
+                <Route exact path='/register' component={RegisterView} />
+                <Route exact path='/login' component={LoginView} />
                 <Route path='/forgot-password' component={ForgotPasswordView} />
                 <PrivateRoute path='/update-profile' component={UpdateProfileView} />
                 <PrivateRoute path='/profile' component={ProfileView} />
@@ -58,7 +59,7 @@ function App() {
 
           </AuthProvider>
         </Switch>
-      </Router>
+      </HashRouter>
 
       <Footer />
     </>
