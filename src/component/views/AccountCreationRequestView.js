@@ -31,19 +31,19 @@ export function AccountCreationRequestView() {
 
   function RequestCard(props) {
     async function denyRequest(id) {
-      const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get();
-      await ClientAccountCreation.all().doc(requestId.docs[0].id).delete();
+      const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get()
+      await ClientAccountCreation.all().doc(requestId.docs[0].id).delete()
 
-      await Client.all().doc(id).delete();
+      await Client.all().doc(id).delete()
 
-      window.location.reload();
+      window.location.reload()
     }
 
     async function acceptRequest(id) {
-      const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get();
-      await ClientAccountCreation.all().doc(requestId.docs[0].id).delete();
+      const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get()
+      await ClientAccountCreation.all().doc(requestId.docs[0].id).delete()
 
-      window.location.reload();
+      window.location.reload()
     }
 
     return (
