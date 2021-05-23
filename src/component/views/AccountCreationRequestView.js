@@ -35,11 +35,15 @@ export function AccountCreationRequestView() {
       await ClientAccountCreation.all().doc(requestId.docs[0].id).delete();
 
       await Client.all().doc(id).delete();
+
+      window.location.reload();
     }
 
     async function acceptRequest(id) {
       const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get();
       await ClientAccountCreation.all().doc(requestId.docs[0].id).delete();
+
+      window.location.reload();
     }
 
     return (
