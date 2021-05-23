@@ -30,6 +30,18 @@ export function AccountCreationRequestView() {
   }
 
   function RequestCard(props) {
+    async function denyRequest(id) {
+      const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get();
+      await ClientAccountCreation.all().doc(requestId.docs[0].id).delete();
+
+      await Client.all().doc(id).delete();
+    }
+
+    async function acceptRequest(id) {
+      const requestId = await ClientAccountCreation.all().where('client.id', '==', id).get();
+      await ClientAccountCreation.all().doc(requestId.docs[0].id).delete();
+    }
+
     return (
       <>
         <Card border='secondary' className='mt-3'>
@@ -45,8 +57,8 @@ export function AccountCreationRequestView() {
               <ListGroupItem><strong>adresa: </strong> {props.doc.get('adresa')}</ListGroupItem>
             </ListGroup>
 
-            <Button variant='btn btn-danger ml-3 float-right'>Deny</Button>
-            <Button variant='btn btn-success float-right'>Accept</Button>
+            <Button variant='btn btn-danger ml-3 float-right' onClick={(e) => denyRequest(props.doc.id, e)}>Deny</Button>
+            <Button variant='btn btn-success float-right' onClick={(e) => acceptRequest(props.doc.id, e)}>Accept</Button>
           </Card.Body>
         </Card>
       </>
