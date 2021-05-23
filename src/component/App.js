@@ -30,7 +30,7 @@ function App() {
           <AuthProvider>
             <Header />
 
-            <Route path='/' component={HomeView} />
+            <Route exact path='/' component={HomeView} />
             <PrivateRoute exact path='/dashboard' component={DashboardView} />
 
             <Container className='d-flex align-items-center justify-content-center' style={{marginTop: '10px'}}>
