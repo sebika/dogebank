@@ -7,7 +7,7 @@ export function GoBackLink(props) {
 
   return (
     <div className='w-100 text-center mt-2' style={{marginBottom:70}}>
-      <Button variant='link' onClick={() => history.goBack()}>
+      <Button variant='btn btn-secondary' onClick={() => history.goBack()}>
         {props.text ? props.text : 'Go Back'}
       </Button>
     </div>
