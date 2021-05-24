@@ -45,16 +45,13 @@ export function Header() {
   return (
     <>
       <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
-      <Navbar.Brand href='/'>
+      <Navbar.Brand as={Link} to='/'>
         <h2 className='linkText'>DogeBank</h2>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='responsive-navbar-nav' />
       <Navbar.Collapse id='responsive-navbar-nav'>
 
         <Nav className='mr-auto'>
-          <Nav.Link as={Link} to='/about'>
-            <h5 className='linkText'>About US</h5>
-          </Nav.Link>
           <Nav.Link as={Link} to='/support'>
             <h5 className='linkText'>Support</h5>
           </Nav.Link>
